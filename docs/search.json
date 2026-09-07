@@ -1,0 +1,303 @@
+[
+  {
+    "objectID": "presentation_v0.html#what-is-a-profiler",
+    "href": "presentation_v0.html#what-is-a-profiler",
+    "title": "Introducing GPU Profilers",
+    "section": "What is a profiler?",
+    "text": "What is a profiler?\n\nA tool that runs a command or program, and collects data and metrics about its performance.\nEvent records are collected through hardware counters, and provide performance information including:\n\nTiming, hardware utilisation, instructions, call hierarchy and more.\n\nThis presented information can then be used to engineer better performance from our code."
+  },
+  {
+    "objectID": "presentation_v0.html#profiling-vs-benchmarking",
+    "href": "presentation_v0.html#profiling-vs-benchmarking",
+    "title": "Introducing GPU Profilers",
+    "section": "Profiling vs Benchmarking",
+    "text": "Profiling vs Benchmarking\nRelated but distinct concepts that sometimes get used interchangeably. Both measure performance of code, but with different goals.\n\n\nProfiling\nMeasuring performance metrics with the aim of understanding how the code works, and ultimately optimise performance.\n\n\n\nBenchmarking\nMeasures the performance of existing code.\nUseful for comparing code on different hardwares, or testing the scaling of our programs."
+  },
+  {
+    "objectID": "presentation_v0.html#what-types-of-profiler-are-available-for-gpu",
+    "href": "presentation_v0.html#what-types-of-profiler-are-available-for-gpu",
+    "title": "Introducing GPU Profilers",
+    "section": "What types of profiler are available for GPU?",
+    "text": "What types of profiler are available for GPU?\n\n\nSystems\nProfiles the complete operation of the program from start to finish\nHighlights\n\nProgram timeline\nData transfers\nKernel overheads and runtimes\n\n\n\n\nCompute\nProvides detailed information about the individual kernels\nHighlights\n\nGPU occupancy\nThroughputs\nMemory usage metrics"
+  },
+  {
+    "objectID": "presentation_v0.html#how-do-we-use-profilers-to-optimise",
+    "href": "presentation_v0.html#how-do-we-use-profilers-to-optimise",
+    "title": "Introducing GPU Profilers",
+    "section": "How do we use profilers to optimise?",
+    "text": "How do we use profilers to optimise?\nRun profiler on workflow\n\n\nImplement optimisations\n\n\n\nCheck profiler outputs for optimisation stratergies"
+  },
+  {
+    "objectID": "presentation_v0.html#running-nsight-systems",
+    "href": "presentation_v0.html#running-nsight-systems",
+    "title": "Introducing GPU Profilers",
+    "section": "Running Nsight Systems",
+    "text": "Running Nsight Systems\n\n\nCommand line\nnsys profile [application name]\nProduces a report file that can be used for later analysis\nUseful when working on a system with no x window access\n\n\n\nIn GUI\nnsys-ui\nLaunches the Systems GUI.\nAnalysis can be run directly from the GUI."
+  },
+  {
+    "objectID": "presentation_v0.html#systems-features-the-timeline",
+    "href": "presentation_v0.html#systems-features-the-timeline",
+    "title": "Introducing GPU Profilers",
+    "section": "Systems features: The timeline",
+    "text": "Systems features: The timeline"
+  },
+  {
+    "objectID": "presentation_v0.html#practical-time-5-10-minutes",
+    "href": "presentation_v0.html#practical-time-5-10-minutes",
+    "title": "Introducing GPU Profilers",
+    "section": "Practical time! (5-10 minutes)",
+    "text": "Practical time! (5-10 minutes)\n[link to directory]\nRun Nsights Systems on the provided code!\n./build.sh               # Build the application\nnsys profile a.out 32    # Create a profile report of the code\nnsys-ui report1.nsys-rep # Examine the report in the GUI\nTasks:\n\nFamiliarise yourself with the timeline view.\nUse the CUDA HW track to identify where the GPU is carrying out work.\nUse the CUDA API track check which CUDA functions are being called.\n\nRecord in the shared document the order and time taken of actions on the device."
+  },
+  {
+    "objectID": "presentation_v0.html#using-nsight-systems",
+    "href": "presentation_v0.html#using-nsight-systems",
+    "title": "Introducing GPU Profilers",
+    "section": "Using Nsight Systems",
+    "text": "Using Nsight Systems\n\nShows run times, data transfers and kernel overheads.\nFirst port of call for sanity checking programs.\nGraphical representation of the code’s running.\nTimeline helps quickly spot if something is obviously wrong;\n\nMany data transfers,\nLong-running kernels.\n\nIdentifying longer kernels, or kernels that are called a lot, can provide potential optimisation targets"
+  },
+  {
+    "objectID": "presentation_v0.html#using-nsight-compute",
+    "href": "presentation_v0.html#using-nsight-compute",
+    "title": "Introducing GPU Profilers",
+    "section": "Using Nsight Compute",
+    "text": "Using Nsight Compute\n\n\nCommand line\nncu &lt;options&gt; [application name]\nBy default, provides a minimal performance analysis in the command line.\nHas an SQL database behind the scenes that can be queried for complex analysis.\n\n\n\nIn GUI\nncu-ui\nLaunches the Compute GUI.\nAnalysis can be run directly from the GUI.\nProvides detailed metrics simply."
+  },
+  {
+    "objectID": "presentation_v0.html#exercise-run-nsight-conpute-through-cli-5-mins",
+    "href": "presentation_v0.html#exercise-run-nsight-conpute-through-cli-5-mins",
+    "title": "Introducing GPU Profilers",
+    "section": "Exercise: Run Nsight Conpute through CLI (5 mins)",
+    "text": "Exercise: Run Nsight Conpute through CLI (5 mins)\nUse Nsight Compute on the same code.\nncu -k axpy_kernel a.out 32\n-k here filters the output to only show the desired kernels.\nMake sure the command runs, and take a look at the output. Write down the kernel’s execution time in the shared document."
+  },
+  {
+    "objectID": "presentation_v0.html#using-nsights-compute",
+    "href": "presentation_v0.html#using-nsights-compute",
+    "title": "Introducing GPU Profilers",
+    "section": "Using Nsights Compute",
+    "text": "Using Nsights Compute\nImportant concepts you should have seen:\n\nCompute and memory throughputs\nLaunch parameters\nOccupancy\n\nAdditional information available in the GUI:\n\nSource view, instructions and compute resources\n\nNote:The profiler offers hints on improving performance."
+  },
+  {
+    "objectID": "presentation_v0.html#compute-concepts-speed-of-light-throughput",
+    "href": "presentation_v0.html#compute-concepts-speed-of-light-throughput",
+    "title": "Introducing GPU Profilers",
+    "section": "Compute concepts: Speed of Light Throughput",
+    "text": "Compute concepts: Speed of Light Throughput\n    ----------------------- ----------- ----------------\n    Metric Name             Metric Unit     Metric Value\n    ----------------------- ----------- ----------------\n    DRAM Frequency                  Ghz             1.21\n    SM Frequency                    Mhz           765.00\n    Elapsed Cycles                cycle    1,428,679,972\n    Memory Throughput                 %            84.59\n    DRAM Throughput                   %            84.59\n    Duration                          s             1.87\n    L1/TEX Cache Throughput           %            21.85\n    L2 Cache Throughput               %            86.27\n    SM Active Cycles              cycle 1,428,575,871.03\n    Compute (SM) Throughput           %             6.75\n    ----------------------- ----------- ----------------\nMemory and compute usage of the resource as a ratio against the maximum possible of the hardware"
+  },
+  {
+    "objectID": "presentation_v0.html#compute-concepts-launch-statistics",
+    "href": "presentation_v0.html#compute-concepts-launch-statistics",
+    "title": "Introducing GPU Profilers",
+    "section": "Compute concepts: Launch Statistics",
+    "text": "Compute concepts: Launch Statistics\n    Section: Launch Statistics\n    -------------------------------- --------------- ---------------\n    Metric Name                          Metric Unit    Metric Value\n    -------------------------------- --------------- ---------------\n    Block Size                                                   256\n    Function Cache Configuration                     CachePreferNone\n    Grid Size                                                 16,384\n    Registers Per Thread             register/thread              16\n    Shared Memory Configuration Size           Kbyte           32.77\n    Driver Shared Memory Per Block       Kbyte/block            1.02\n    Dynamic Shared Memory Per Block       byte/block               0\n    Static Shared Memory Per Block        byte/block               0\n    # SMs                                         SM             108\n    Stack Size                                                 1,024\n    Threads                                   thread       4,194,304\n    # TPCs                                                        54\n    Enabled TPC IDs                                              all\n    Uses Green Context                                             0\n    Waves Per SM                                               18.96\n    -------------------------------- --------------- ---------------"
+  },
+  {
+    "objectID": "presentation_v0.html#compute-concepts-launch-statistics-1",
+    "href": "presentation_v0.html#compute-concepts-launch-statistics-1",
+    "title": "Introducing GPU Profilers",
+    "section": "Compute concepts: Launch Statistics",
+    "text": "Compute concepts: Launch Statistics\n    Section: Launch Statistics\n    -------------------------------- --------------- ---------------\n    Metric Name                          Metric Unit    Metric Value\n    -------------------------------- --------------- ---------------\n    Block Size                                                   256\n    Function Cache Configuration                     CachePreferNone\n    Grid Size                                                 16,384\n    Registers Per Thread             register/thread              16\n    Shared Memory Configuration Size           Kbyte           32.77\n    Driver Shared Memory Per Block       Kbyte/block            1.02\n    Dynamic Shared Memory Per Block       byte/block               0\n    Static Shared Memory Per Block        byte/block               0\n    # SMs                                         SM             108\n    Stack Size                                                 1,024\n    Threads                                   thread       4,194,304\n    # TPCs                                                        54\n    Enabled TPC IDs                                              all\n    Uses Green Context                                             0\n    Waves Per SM                                               18.96\n    -------------------------------- --------------- ---------------\nGrid dimensions (as defined by the launch parameters)"
+  },
+  {
+    "objectID": "presentation_v0.html#compute-concepts-launch-statistics-2",
+    "href": "presentation_v0.html#compute-concepts-launch-statistics-2",
+    "title": "Introducing GPU Profilers",
+    "section": "Compute concepts: Launch Statistics",
+    "text": "Compute concepts: Launch Statistics\n    Section: Launch Statistics\n    -------------------------------- --------------- ---------------\n    Metric Name                          Metric Unit    Metric Value\n    -------------------------------- --------------- ---------------\n    Block Size                                                   256\n    Function Cache Configuration                     CachePreferNone\n    Grid Size                                                 16,384\n    Registers Per Thread             register/thread              16\n    Shared Memory Configuration Size           Kbyte           32.77\n    Driver Shared Memory Per Block       Kbyte/block            1.02\n    Dynamic Shared Memory Per Block       byte/block               0\n    Static Shared Memory Per Block        byte/block               0\n    # SMs                                         SM             108\n    Stack Size                                                 1,024\n    Threads                                   thread       4,194,304\n    # TPCs                                                        54\n    Enabled TPC IDs                                              all\n    Uses Green Context                                             0\n    Waves Per SM                                               18.96\n    -------------------------------- --------------- ---------------\nNumber of registers that each thread uses (counted during kernel running)"
+  },
+  {
+    "objectID": "presentation_v0.html#compute-concepts-launch-statistics-3",
+    "href": "presentation_v0.html#compute-concepts-launch-statistics-3",
+    "title": "Introducing GPU Profilers",
+    "section": "Compute concepts: Launch Statistics",
+    "text": "Compute concepts: Launch Statistics\n    Section: Launch Statistics\n    -------------------------------- --------------- ---------------\n    Metric Name                          Metric Unit    Metric Value\n    -------------------------------- --------------- ---------------\n    Block Size                                                   256\n    Function Cache Configuration                     CachePreferNone\n    Grid Size                                                 16,384\n    Registers Per Thread             register/thread              16\n    Shared Memory Configuration Size           Kbyte           32.77\n    Driver Shared Memory Per Block       Kbyte/block            1.02\n    Dynamic Shared Memory Per Block       byte/block               0\n    Static Shared Memory Per Block        byte/block               0\n    # SMs                                         SM             108\n    Stack Size                                                 1,024\n    Threads                                   thread       4,194,304\n    # TPCs                                                        54\n    Enabled TPC IDs                                              all\n    Uses Green Context                                             0\n    Waves Per SM                                               18.96\n    -------------------------------- --------------- ---------------\nShared memory. From launch parameters and measured in use."
+  },
+  {
+    "objectID": "presentation_v0.html#compute-concepts-occupancy",
+    "href": "presentation_v0.html#compute-concepts-occupancy",
+    "title": "Introducing GPU Profilers",
+    "section": "Compute concepts: Occupancy",
+    "text": "Compute concepts: Occupancy\nThe ratio of active warps to the theoretical maximum possible on the hardware.\n    Section: Occupancy\n    ------------------------------- ----------- ------------\n    Metric Name                     Metric Unit Metric Value\n    ------------------------------- ----------- ------------\n    Block Limit SM                        block           32\n    Block Limit Registers                 block           16\n    Block Limit Shared Mem                block           32\n    Block Limit Warps                     block            8\n    Theoretical Active Warps per SM        warp           64\n    Theoretical Occupancy                     %          100\n    Achieved Occupancy                        %        64.83\n    Achieved Active Warps Per SM           warp        41.49\n    ------------------------------- ----------- ------------"
+  },
+  {
+    "objectID": "presentation_v0.html#compute-concepts-occupancy-1",
+    "href": "presentation_v0.html#compute-concepts-occupancy-1",
+    "title": "Introducing GPU Profilers",
+    "section": "Compute concepts: Occupancy",
+    "text": "Compute concepts: Occupancy\nThe ratio of active warps to the theoretical maximum possible on the hardware.\n    Section: Occupancy\n    ------------------------------- ----------- ------------\n    Metric Name                     Metric Unit Metric Value\n    ------------------------------- ----------- ------------\n    Block Limit SM                        block           32\n    Block Limit Registers                 block           16\n    Block Limit Shared Mem                block           32\n    Block Limit Warps                     block            8\n    Theoretical Active Warps per SM        warp           64\n    Theoretical Occupancy                     %          100\n    Achieved Occupancy                        %        64.83\n    Achieved Active Warps Per SM           warp        41.49\n    ------------------------------- ----------- ------------\nTheoretical = maxmimum possible given the properties of the kernel Achieved = Real occupancy (given thread overheads etc.)"
+  },
+  {
+    "objectID": "presentation_v0.html#compute-concepts-occupancy-2",
+    "href": "presentation_v0.html#compute-concepts-occupancy-2",
+    "title": "Introducing GPU Profilers",
+    "section": "Compute concepts: Occupancy",
+    "text": "Compute concepts: Occupancy\nThe ratio of active warps to the theoretical maximum possible on the hardware.\n    Section: Occupancy\n    ------------------------------- ----------- ------------\n    Metric Name                     Metric Unit Metric Value\n    ------------------------------- ----------- ------------\n    Block Limit SM                        block           32\n    Block Limit Registers                 block           16\n    Block Limit Shared Mem                block           32\n    Block Limit Warps                     block            8\n    Theoretical Active Warps per SM        warp           64\n    Theoretical Occupancy                     %          100\n    Achieved Occupancy                        %        64.83\n    Achieved Active Warps Per SM           warp        41.49\n    ------------------------------- ----------- ------------\nFixed hardware cap on the number of blocks an SM can hold"
+  },
+  {
+    "objectID": "presentation_v0.html#compute-concepts-occupancy-3",
+    "href": "presentation_v0.html#compute-concepts-occupancy-3",
+    "title": "Introducing GPU Profilers",
+    "section": "Compute concepts: Occupancy",
+    "text": "Compute concepts: Occupancy\nThe ratio of active warps to the theoretical maximum possible on the hardware.\n    Section: Occupancy\n    ------------------------------- ----------- ------------\n    Metric Name                     Metric Unit Metric Value\n    ------------------------------- ----------- ------------\n    Block Limit SM                        block           32\n    Block Limit Registers                 block           16\n    Block Limit Shared Mem                block           32\n    Block Limit Warps                     block            8\n    Theoretical Active Warps per SM        warp           64\n    Theoretical Occupancy                     %          100\n    Achieved Occupancy                        %        64.83\n    Achieved Active Warps Per SM           warp        41.49\n    ------------------------------- ----------- ------------\nThe SM’s register file divided by the registers each block needs."
+  },
+  {
+    "objectID": "presentation_v0.html#compute-concepts-occupancy-4",
+    "href": "presentation_v0.html#compute-concepts-occupancy-4",
+    "title": "Introducing GPU Profilers",
+    "section": "Compute concepts: Occupancy",
+    "text": "Compute concepts: Occupancy\nThe ratio of active warps to the theoretical maximum possible on the hardware.\n    Section: Occupancy\n    ------------------------------- ----------- ------------\n    Metric Name                     Metric Unit Metric Value\n    ------------------------------- ----------- ------------\n    Block Limit SM                        block           32\n    Block Limit Registers                 block           16\n    Block Limit Shared Mem                block           32\n    Block Limit Warps                     block            8\n    Theoretical Active Warps per SM        warp           64\n    Theoretical Occupancy                     %          100\n    Achieved Occupancy                        %        64.83\n    Achieved Active Warps Per SM           warp        41.49\n    ------------------------------- ----------- ------------\nThe SM’s shared memory divided by the amount each block requests."
+  },
+  {
+    "objectID": "presentation_v0.html#compute-concepts-occupancy-5",
+    "href": "presentation_v0.html#compute-concepts-occupancy-5",
+    "title": "Introducing GPU Profilers",
+    "section": "Compute concepts: Occupancy",
+    "text": "Compute concepts: Occupancy\nThe ratio of active warps to the theoretical maximum possible on the hardware.\n    Section: Occupancy\n    ------------------------------- ----------- ------------\n    Metric Name                     Metric Unit Metric Value\n    ------------------------------- ----------- ------------\n    Block Limit SM                        block           32\n    Block Limit Registers                 block           16\n    Block Limit Shared Mem                block           32\n    Block Limit Warps                     block            8\n    Theoretical Active Warps per SM        warp           64\n    Theoretical Occupancy                     %          100\n    Achieved Occupancy                        %        64.83\n    Achieved Active Warps Per SM           warp        41.49\n    ------------------------------- ----------- ------------\nThe SM’s maximum number of warps divided by the warps per block."
+  },
+  {
+    "objectID": "presentation_v0.html#occupancy-caveat",
+    "href": "presentation_v0.html#occupancy-caveat",
+    "title": "Introducing GPU Profilers",
+    "section": "Occupancy caveat",
+    "text": "Occupancy caveat\nHigher occupancy is not always higher performance!\nSome lower occupancy scenarios that run more efficiently:\n\nThreads that require many registers but few memory accesses.\nLower thread counts running on properly coalesced memory."
+  },
+  {
+    "objectID": "presentation_v0.html#compute-concepts-memory-workload",
+    "href": "presentation_v0.html#compute-concepts-memory-workload",
+    "title": "Introducing GPU Profilers",
+    "section": "Compute concepts: Memory workload",
+    "text": "Compute concepts: Memory workload\n    Section: GPU and Memory Workload Distribution\n    -------------------------- ----------- ------------\n    Metric Name                Metric Unit Metric Value\n    -------------------------- ----------- ------------\n    Average DRAM Active Cycles       cycle    13,501.20\n    Total DRAM Elapsed Cycles        cycle   39,540,736\n    Average L1 Active Cycles         cycle   618,614.50\n    Total L1 Elapsed Cycles          cycle   67,216,096\n    Average L2 Active Cycles         cycle      194,794\n    Total L2 Elapsed Cycles          cycle   48,816,560\n    Average SM Active Cycles         cycle   618,614.50\n    Total SM Elapsed Cycles          cycle   67,216,096\n    Average SMSP Active Cycles       cycle   618,525.90\n    Total SMSP Elapsed Cycles        cycle  268,864,384\n    -------------------------- ----------- ------------\nDisplays the number of memory cycles for the kernel.\nWe won’t be using this information in the workshop."
+  },
+  {
+    "objectID": "presentation_v0.html#exercise-playing-with-occupancy",
+    "href": "presentation_v0.html#exercise-playing-with-occupancy",
+    "title": "Introducing GPU Profilers",
+    "section": "Exercise: Playing with occupancy!",
+    "text": "Exercise: Playing with occupancy!\nReminder of the factors that impact occupancy:\n\nHardware limits in the GPU,\nGrid and block size,\nShared memory usage,\nRegisters per thread.\n\nWe will now go through a set of exercises that demonstrate these factors."
+  },
+  {
+    "objectID": "presentation_v0.html#occupancy-exercises-20-minutes",
+    "href": "presentation_v0.html#occupancy-exercises-20-minutes",
+    "title": "Introducing GPU Profilers",
+    "section": "Occupancy exercises (20 minutes)",
+    "text": "Occupancy exercises (20 minutes)\n1) Grid and block size\n\nlaunch_param_size directory - where you already are!\n\n2) Register use per thread\n\nregisters directory\n\n3) Shared memory per block\n\nshared_memory directory\n\nThe code for all exercises vary a single parameter that controls the amount of the resource the kernels use - check the README.md in each directory for more information!\nMake a note of the parameters you test, and how they impact the runtime and occupancy."
+  },
+  {
+    "objectID": "presentation_v0.html#occupancy-i-grid-and-block-size",
+    "href": "presentation_v0.html#occupancy-i-grid-and-block-size",
+    "title": "Introducing GPU Profilers",
+    "section": "Occupancy I: Grid and block size",
+    "text": "Occupancy I: Grid and block size\nOn an A100, which has a maximum of 32 blocks per streaming multiprocessor, changing the block sizes of the example gives the following occupancies:\n\n\n\n\n\n\n\n\n\nThreads/block\nWarps/block\nExpected occupancy\nWhat it shows\n\n\n\n\n32\n1\n~50%\ncapped by the 32-blocks-per-SM limit, not warps — small blocks hurt\n\n\n64\n2\n~100%\njust enough warps per block to fill the 64 slots\n\n\n128\n4\n~100%\nfewer, larger blocks, still 64 warps\n\n\n256\n8\n~100%\nconventional full-occupancy case\n\n\n768\n24\n~75%\n64 is not divisible by 24, so only 2 blocks fit and 16 warp slots stay idle\n\n\n1024\n32\n~100%\n2 blocks of 32 warps fill all 64 slots"
+  },
+  {
+    "objectID": "presentation_v0.html#occupancy-ii-registers",
+    "href": "presentation_v0.html#occupancy-ii-registers",
+    "title": "Introducing GPU Profilers",
+    "section": "Occupancy II: Registers",
+    "text": "Occupancy II: Registers\nYou should find that increasing N in the program decreases occupancy.\n\n\n\nN\nRegister/thread\nDuration (ms)\nOccupancy (%)\n\n\n\n\n2\n16\n159\n100\n\n\n8\n44\n290\n62\n\n\n50\n206\n321\n12.5\n\n\n\n\nThe number of registers that will be used by a thread is often unintuitive.\nA profiler will measure the use directly, making it a valuable tool here."
+  },
+  {
+    "objectID": "presentation_v0.html#occupancy-iii-shared-memory",
+    "href": "presentation_v0.html#occupancy-iii-shared-memory",
+    "title": "Introducing GPU Profilers",
+    "section": "Occupancy III: Shared Memory",
+    "text": "Occupancy III: Shared Memory\nHigher use of shared memory causes lower occupancy.\n\n\n\nSHARED_STRIDES\nMemory size per block\nBlocks/SM\nA100 Occupancy\n\n\n\n\n96\n49kB\n3\n18.75%\n\n\n64\n32kB\n4\n25%\n\n\n32\n16kB\n9\n56.25%\n\n\n24\n12kB\n12\n75%\n\n\n20\n10kB\n14\n87.5%\n\n\n18\n9kB\n16\n100%\n\n\n\n\nUseful when you need a lot of data re-use\n\nGPUs, unlike CPUs, are NOT good at caching memory.\nLoops can benefit from using shared memory when you would think L2 cache should be used\n\nToo much use will impact performance!"
+  },
+  {
+    "objectID": "presentation_v0.html#compute-concepts-instruction-and-source-view",
+    "href": "presentation_v0.html#compute-concepts-instruction-and-source-view",
+    "title": "Introducing GPU Profilers",
+    "section": "Compute concepts: Instruction and source view",
+    "text": "Compute concepts: Instruction and source view\n\nCompute offers a detailed view of the instructions run in a kernel and the resourse use at each step.\nNOTE! This is outside the scope of this workshop, and is being presented for completion!"
+  },
+  {
+    "objectID": "presentation_v0.html#memory-coalescence-exercise-15-minutes",
+    "href": "presentation_v0.html#memory-coalescence-exercise-15-minutes",
+    "title": "Introducing GPU Profilers",
+    "section": "Memory coalescence exercise (15 minutes)",
+    "text": "Memory coalescence exercise (15 minutes)\nWarps work most efficiently when each thread accesses sequential (‘coalesced’) memory.\nTo demonstrate this, we will profile the program in the indexing directory.\nThe program contains two kernels that perform the same summation operation on a 256 x 2^20 data structure, but with different memory access patterns:\n\nrow_sum_strided accesses its rows contiguously, in the manner that would be optimised for CPU.\nrow_sum_coalesced uses a transposed indexing so that adjacent threads are accessing memory 1 float apart."
+  },
+  {
+    "objectID": "presentation_v0.html#memory-coalescence-discussion",
+    "href": "presentation_v0.html#memory-coalescence-discussion",
+    "title": "Introducing GPU Profilers",
+    "section": "Memory coalescence discussion",
+    "text": "Memory coalescence discussion\n\n\n\nKernel\nduration (us)\n\n\n\n\nrow_sum_strided\n3280\n\n\nrow_sum_coalesced\n764\n\n\n\nThe coalesced accesses are substantially faster.\nTakeaways:\n\nBest practice is to design data to run well on the GPU from the start.\nIt might be useful to spend time/compute to repack data into coalesced objects.\nDeciding which strategy is optimal is where the profiling cycling comes into its own!"
+  },
+  {
+    "objectID": "presentation_v0.html#branching-in-kernels",
+    "href": "presentation_v0.html#branching-in-kernels",
+    "title": "Introducing GPU Profilers",
+    "section": "Branching in kernels",
+    "text": "Branching in kernels\nWhen threads in a warp take different branches in a kernel, the GPU runs both branches on every thread. A lot of branching in kernels can therefore hurt our performance.\nLet’s look at a practical example, in the branching directory, which demonstrates this impact of branching on kernel run-time.\n\nEach thread in the branching_kernel choses a branch based on its ID and an input parameter\nChanging the input parameter changes how coherent the warps are in branch selection.\n\n1 = Divergent warps\n32 = Coherent warps"
+  },
+  {
+    "objectID": "presentation_v0.html#branching-exercise-discussion",
+    "href": "presentation_v0.html#branching-exercise-discussion",
+    "title": "Introducing GPU Profilers",
+    "section": "Branching exercise discussion",
+    "text": "Branching exercise discussion\n\n\n\nCoherence_parameter\nRuntime (us)\n\n\n\n\n1 (divergent warps)\n813\n\n\n16\n813\n\n\n32 (coherent warps)\n418\n\n\n\n\nWith divergent threads in the warp, the kernel runs each branch for every thread.\nWhen our warps coherently choose the same branch, we only need to run one of the branches, and our run time is halved.\nWe can leverage this in the design of data structures and control paths, e.g. grouping boundary conditions together."
+  },
+  {
+    "objectID": "presentation_v0.html#minimising-data-transfers-30-minutes",
+    "href": "presentation_v0.html#minimising-data-transfers-30-minutes",
+    "title": "Introducing GPU Profilers",
+    "section": "Minimising data transfers (30 minutes)",
+    "text": "Minimising data transfers (30 minutes)\nYou have probably heard that data transfers between host and device are very costly to the performance of your code.\nNow that you’re well-practiced in using a profiler, you can prove this for yourself!\nThere are two demonstrations of how data transfers can impact performance to explore:\n1) Grouping transfers\n\nIn the grouping_transfers directory.\nDemonstrates how runtime is impacted by splitting data transfers.\n\n2) Avoiding additional transfers\n\nIn the data_lifetime directory.\nImprove runtime using innefficient GPU code to avoid extra data transfers"
+  },
+  {
+    "objectID": "presentation_v0.html#grouped-transfers-i",
+    "href": "presentation_v0.html#grouped-transfers-i",
+    "title": "Introducing GPU Profilers",
+    "section": "Grouped transfers I",
+    "text": "Grouped transfers I\nMaking one large transfer is more efficient than making many, smaller transfers.\n\n\n\n\nThe blank space between transfers shows the overhead associated with launching a transfer"
+  },
+  {
+    "objectID": "presentation_v0.html#grouped-transfers-ii",
+    "href": "presentation_v0.html#grouped-transfers-ii",
+    "title": "Introducing GPU Profilers",
+    "section": "Grouped transfers II",
+    "text": "Grouped transfers II\nUsing the sqlite functionality of Systems we can produce a table that calculates the transfer overheads:\n\n\n\nbytes\ncalls\napi (ns)\ngpu (ns)\noverhead (ns)\n\n\n\n\n128000\n1000\n27835646\n13919100\n13916546\n\n\n1280000\n100\n11496019\n10038196\n1457823\n\n\n12800000\n10\n9811789\n9649268\n162521\n\n\n128000000\n1\n9663991\n9612501\n51490\n\n\n\nRemember! - The same overheads will also happen when launching kernels. - Launching many small transfers (or kernels!) in a loop is a very good way to run into large overheads, slowing down your code!"
+  },
+  {
+    "objectID": "presentation_v0.html#data-lifetime",
+    "href": "presentation_v0.html#data-lifetime",
+    "title": "Introducing GPU Profilers",
+    "section": "Data lifetime",
+    "text": "Data lifetime\nBecause data transfers are very time-expensive, it is good practice to leave memory on the GPU for as long as possible.\nSometimes, this means creating kernels for code that could be better optimised on CPU but is part of the way through a GPU workflow. The inefficient calculations on GPU might still be faster than a transfer to and from the host!"
+  },
+  {
+    "objectID": "presentation_v0.html#data-lifetime-exercise-15-minutes",
+    "href": "presentation_v0.html#data-lifetime-exercise-15-minutes",
+    "title": "Introducing GPU Profilers",
+    "section": "Data lifetime exercise (15 minutes)",
+    "text": "Data lifetime exercise (15 minutes)\nConsider the program in the data_lifetime directory.\nThe workflow of the program is:\n\nCarry out a Fast Fourier Transform (FFT) on a large data object - well suited to GPU,\nRe-normalise the array - a task better suited to CPU,\nReverse the FFT on the GPU.\n\nTwo versions of this workflow are presented:\n\nrun_naive, which transfers the data back to the CPU for the normalisation calculations,\nrun_resident, which uses a device kernel for the normalisation.\n\nRun Nsight Systems on this program to see how the two versions perform."
+  },
+  {
+    "objectID": "presentation_v0.html#data-lifetime-exercise-discussion",
+    "href": "presentation_v0.html#data-lifetime-exercise-discussion",
+    "title": "Introducing GPU Profilers",
+    "section": "Data lifetime exercise discussion",
+    "text": "Data lifetime exercise discussion"
+  },
+  {
+    "objectID": "presentation_v0.html#data-lifetime-exercise-timing-table",
+    "href": "presentation_v0.html#data-lifetime-exercise-timing-table",
+    "title": "Introducing GPU Profilers",
+    "section": "Data lifetime exercise timing table",
+    "text": "Data lifetime exercise timing table\n ** CUDA GPU Kernel Summary (cuda_gpu_kern_sum):\n\n Time (%)  Total Time (ns)  Instances  Avg (ns)   Med (ns)   Min (ns)  Max (ns)  StdDev (ns)                Name\n --------  ---------------  ---------  ---------  ---------  --------  --------  -----------  ------------------------------------\n     95.6        2,000,548          8  250,068.5  249,601.0   227,873   271,585     21,636.6  void regular_fft_factor&lt;...&gt;  (cuFFT)\n      4.4           92,896          1   92,896.0   92,896.0    92,896    92,896          0.0  normalise(double2 *, double, int)\n ** CUDA GPU MemOps Summary (by Time) (cuda_gpu_mem_time_sum):\n\n Time (%)  Total Time (ns)  Count   Avg (ns)     Med (ns)    Min (ns)   Max (ns)   StdDev (ns)           Operation\n --------  ---------------  -----  -----------  -----------  ---------  ---------  -----------  ----------------------------\n     58.2       21,262,050      6  3,543,675.0  3,674,118.0      1,824  8,871,150  3,448,662.2  [CUDA memcpy Host-to-Device]\n     41.8       15,252,761      3  5,084,253.7  5,084,104.0  5,083,945  5,084,712        404.8  [CUDA memcpy Device-to-Host]\nSometimes it is better to leave data resident on the GPU than to move it back to the CPU, where calculations might naively be more efficient."
+  },
+  {
+    "objectID": "presentation_v0.html#data-transfer-takeaways",
+    "href": "presentation_v0.html#data-transfer-takeaways",
+    "title": "Introducing GPU Profilers",
+    "section": "Data transfer takeaways",
+    "text": "Data transfer takeaways\nPutting everything we’ve learnt together about data transfers:\n\nPrefer fewer, larger transfers.\nConsider moving data over to the GPU earlier than needed if it can be added to another transfer.\nSometimes inefficient GPU code will still save time over transferring back to the host."
+  },
+  {
+    "objectID": "presentation_v0.html#conclusions-and-takeaways",
+    "href": "presentation_v0.html#conclusions-and-takeaways",
+    "title": "Introducing GPU Profilers",
+    "section": "Conclusions and takeaways",
+    "text": "Conclusions and takeaways\nYou should now have plenty of practical experience using both the Nsight Systems and Nsight Compute profilers! They are valuable tools for optimising GPU codes, and should be used as part of your regular workflow when trying to extract performance from your programs.\nREMEMBER!\n\nHigher occupancy is good, but is not always the most performant!\nReduce data transfers!\nCoalesce your memory!\nDesign your memory and data structures to suit the GPU!"
+  }
+]

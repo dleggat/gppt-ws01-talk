@@ -1,0 +1,11 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Introducing GPU Profilers"
+  site-url: "https://dleggat.github.io/gppt-ws01-talk"
+
+format:
+  html:
+    theme: default
