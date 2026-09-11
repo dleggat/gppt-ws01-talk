@@ -115,6 +115,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -211,19 +212,19 @@ Duncan Leggat
   <p class="date">2026-09-15</p>
 </section>
 <section>
-<section id="gpu-profiler" class="title-slide slide level1 center">
-<h1>GPU Profiler</h1>
+<section id="gpu-profilers" class="title-slide slide level1 center">
+<h1>GPU Profilers</h1>
 
 </section>
 <section id="what-is-a-profiler" class="slide level2">
 <h2>What <em>is</em> a profiler?</h2>
 <ul>
-<li>A tool that runs a command or program, and collects data and metrics about its performance.</li>
-<li>Event records are collected through hardware counters, and provide performance information including:
+<li class="fragment">A tool that runs a command or program, and collects data and metrics about its performance.</li>
+<li class="fragment">Event records are collected through hardware counters, and provide performance information including:
 <ul>
-<li>Timing, hardware utilisation, instructions, call hierarchy and more.</li>
+<li class="fragment">Timing, hardware utilisation, instructions, call hierarchy and more.</li>
 </ul></li>
-<li>This presented information can then be used to engineer better performance from our code.</li>
+<li class="fragment">This presented information can then be used to engineer better performance from our code.</li>
 </ul>
 </section>
 <section id="profiling-vs-benchmarking" class="slide level2">
@@ -231,92 +232,162 @@ Duncan Leggat
 <p>Related but distinct concepts that sometimes get used interchangeably. Both measure performance of code, but with different goals.</p>
 <div class="columns">
 <div class="column" style="width:45%;">
+<div style="font-size: 130%;">
 <p><strong>Profiling</strong></p>
+</div>
+<div class="fragment">
 <p>Measuring performance metrics with the aim of understanding how the code works, and ultimately optimise performance.</p>
+</div>
 </div><div class="column" style="width:10%;">
 
 </div><div class="column" style="width:45%;">
+<div style="font-size: 130%;">
 <p><strong>Benchmarking</strong></p>
+</div>
+<div class="fragment">
 <p>Measures the performance of existing code.</p>
 <p>Useful for comparing code on different hardwares, or testing the scaling of our programs.</p>
+</div>
 </div></div>
 </section>
 <section id="what-types-of-profiler-are-available-for-gpu" class="slide level2">
 <h2>What types of profiler are available for GPU?</h2>
 <div class="columns">
 <div class="column" style="width:45%;">
+<div style="font-size: 130%;">
 <p><strong>Systems</strong></p>
+</div>
+<div class="fragment">
 <p>Profiles the complete operation of the program from start to finish</p>
 <p><em>Highlights</em></p>
 <ul>
-<li>Program timeline</li>
-<li>Data transfers</li>
-<li>Kernel overheads and runtimes</li>
+<li class="fragment">Program timeline</li>
+<li class="fragment">Data transfers</li>
+<li class="fragment">Kernel overheads and runtimes</li>
 </ul>
+</div>
 </div><div class="column" style="width:10%;">
 
 </div><div class="column" style="width:45%;">
+<div style="font-size: 130%;">
 <p><strong>Compute</strong></p>
+</div>
+<div class="fragment">
 <p>Provides detailed information about the individual kernels</p>
 <p><em>Highlights</em></p>
 <ul>
-<li>GPU occupancy</li>
-<li>Throughputs</li>
-<li>Memory usage metrics</li>
+<li class="fragment">GPU occupancy</li>
+<li class="fragment">Throughputs</li>
+<li class="fragment">Memory usage metrics</li>
 </ul>
+</div>
 </div></div>
 </section>
 <section id="how-do-we-use-profilers-to-optimise" class="slide level2" style="text-align: center;">
 <h2>How do we use profilers to optimise?</h2>
-<p><span class="absolute" style="top: 150px; left: 33%; ">Run profiler on workflow</span></p>
+<p><span class="absolute" style="font-size: 135%;top: 150px; left: 33%; ">Run profiler on workflow</span></p>
 <div class="columns absolute" style="top: 300px; ">
 <div class="column" style="width:45%;">
+<div style="font-size: 135%;">
 <p>Implement optimisations</p>
+</div>
 </div><div class="column" style="width:10%;">
 
 </div><div class="column" style="width:45%;">
-<p>Check profiler outputs for optimisation stratergies</p>
+<div style="font-size: 135%;">
+<p>Check profiler outputs for optimisation strategies</p>
+</div>
 </div></div>
-<p></p><div style="position: absolute; left: 780.0px; top: 160.0px; pointer-events: none; z-index: 9999;"><svg width="140.0" height="160.0" viewbox="0 0 140.0 160.0" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;"><defs><marker id="arrow-587527" markerwidth="10" markerheight="10" refx="0" refy="5.0" orient="auto-start-reverse" markerunits="strokeWidth"><path d="M 0 0 L 10 5.0 L 0 10 z" fill="black"></path></marker></defs><path d="M 20.0,20.0 Q 70.0,40.0 120.0,140.0" stroke="black" stroke-width="2" fill="none" marker-end="url(#arrow-587527)"></path></svg></div> <div style="position: absolute; left: 380.0px; top: 430.0px; pointer-events: none; z-index: 9999;"><svg width="340.0" height="90.0" viewbox="0 0 340.0 90.0" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;"><defs><marker id="arrow-587910" markerwidth="10" markerheight="10" refx="0" refy="5.0" orient="auto-start-reverse" markerunits="strokeWidth"><path d="M 0 0 L 10 5.0 L 0 10 z" fill="black"></path></marker></defs><path d="M 320.0,20.0 Q 170.0,70.0 20.0,20.0" stroke="black" stroke-width="2" fill="none" marker-end="url(#arrow-587910)"></path></svg></div> <div style="position: absolute; left: 180.0px; top: 160.0px; pointer-events: none; z-index: 9999;"><svg width="140.0" height="160.0" viewbox="0 0 140.0 160.0" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;"><defs><marker id="arrow-506096" markerwidth="10" markerheight="10" refx="0" refy="5.0" orient="auto-start-reverse" markerunits="strokeWidth"><path d="M 0 0 L 10 5.0 L 0 10 z" fill="black"></path></marker></defs><path d="M 20.0,140.0 Q 70.0,40.0 120.0,20.0" stroke="black" stroke-width="2" fill="none" marker-end="url(#arrow-506096)"></path></svg></div><p></p>
+<p></p><div style="position: absolute; left: 780.0px; top: 160.0px; pointer-events: none; z-index: 9999;"><svg width="140.0" height="160.0" viewbox="0 0 140.0 160.0" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;"><defs><marker id="arrow-361000" markerwidth="10" markerheight="10" refx="0" refy="5.0" orient="auto-start-reverse" markerunits="strokeWidth"><path d="M 0 0 L 10 5.0 L 0 10 z" fill="black"></path></marker></defs><path d="M 20.0,20.0 Q 70.0,40.0 120.0,140.0" stroke="black" stroke-width="2" fill="none" marker-end="url(#arrow-361000)"></path></svg></div> <div style="position: absolute; left: 380.0px; top: 430.0px; pointer-events: none; z-index: 9999;"><svg width="340.0" height="90.0" viewbox="0 0 340.0 90.0" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;"><defs><marker id="arrow-839160" markerwidth="10" markerheight="10" refx="0" refy="5.0" orient="auto-start-reverse" markerunits="strokeWidth"><path d="M 0 0 L 10 5.0 L 0 10 z" fill="black"></path></marker></defs><path d="M 320.0,20.0 Q 170.0,70.0 20.0,20.0" stroke="black" stroke-width="2" fill="none" marker-end="url(#arrow-839160)"></path></svg></div> <div style="position: absolute; left: 180.0px; top: 160.0px; pointer-events: none; z-index: 9999;"><svg width="140.0" height="160.0" viewbox="0 0 140.0 160.0" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;"><defs><marker id="arrow-948694" markerwidth="10" markerheight="10" refx="0" refy="5.0" orient="auto-start-reverse" markerunits="strokeWidth"><path d="M 0 0 L 10 5.0 L 0 10 z" fill="black"></path></marker></defs><path d="M 20.0,140.0 Q 70.0,40.0 120.0,20.0" stroke="black" stroke-width="2" fill="none" marker-end="url(#arrow-948694)"></path></svg></div><p></p>
 </section></section>
-<section id="nvidias-nsight-profilers" class="title-slide slide level1 center">
+<section id="nvidias-nsight-profilers" class="title-slide slide level1 nostretch center">
 <h1>Nvidia’s Nsight profilers</h1>
+<div class="quarto-layout-panel" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="images/nsight_logo.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="images/nsight_sys_logo.png" width="190"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="images/nsight_ncu_logo.png" width="190"></p>
+</div>
+</div>
+</div>
+<div style="margin-top: -70px;">
 
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<p><code></code></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<p>Nsight Systems</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<p>Nsight Compute</p>
+</div>
+</div>
+</div>
 </section>
 
 <section>
 <section id="nsight-systems" class="title-slide slide level1 center">
 <h1>Nsight Systems</h1>
 
-<img data-src="images/system_data-lifetime.png" class="r-stretch"></section>
+<img data-src="images/system_data-lifetime.png" width="1000" class="r-stretch"></section>
 <section id="running-nsight-systems" class="slide level2">
 <h2>Running Nsight Systems</h2>
 <div class="columns">
-<div class="column" style="width:45%;">
+<div class="column" style="width:46%;">
+<div style="font-size: 130%;">
 <p><strong>Command line</strong></p>
-<p><code>nsys profile [application name]</code></p>
-<p>Produces a report file that can be used for later analysis</p>
-<p>Useful when working on a system with no x window access</p>
-</div><div class="column" style="width:10%;">
+</div>
+<div class="fragment">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">nsys</span> profile [application name]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Produces a <code>.nsys-rep</code> report file.</p>
+</div>
+<div class="fragment">
+<p>This report can be opened in the GUI, or analysed directly in the command line.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">nsys</span> stats <span class="at">--report</span> <span class="pp">[</span><span class="ss">option</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">report</span><span class="pp">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Useful options:</p>
+<ul>
+<li class="fragment"><code>cuda_api_gpu_sum</code></li>
+<li class="fragment"><code>cuda_gpu_kern_sum</code></li>
+<li class="fragment"><code>openmp_sum</code></li>
+</ul>
+</div>
+</div><div class="column" style="width:8%;">
 
-</div><div class="column" style="width:45%;">
+</div><div class="column" style="width:46%;">
+<div style="font-size: 130%;">
 <p><strong>In GUI</strong></p>
-<p><code>nsys-ui</code></p>
+</div>
+<div class="fragment">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="ex">nsys-ui</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Launches the Systems GUI.</p>
 <p>Analysis can be run directly from the GUI.</p>
+</div>
+<div class="fragment">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a></a><span class="ex">nsys-ui</span> <span class="op">&lt;</span>report<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To open an existing report directly in the GUI.</p>
+</div>
 </div></div>
 </section>
 <section id="systems-features-the-timeline" class="slide level2">
 <h2>Systems features: The timeline</h2>
 
 <img data-src="images/system_data-lifetime.png" class="r-stretch"></section>
-<section id="practical-time-5-10-minutes" class="slide level2">
-<h2>Practical time! (5-10 minutes)</h2>
-<p>[link to directory]</p>
-<p>Run Nsights Systems on the provided code!</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">./build.sh</span>               <span class="co"># Build the application</span></span>
-<span id="cb1-2"><a></a><span class="ex">nsys</span> profile a.out 32    <span class="co"># Create a profile report of the code</span></span>
-<span id="cb1-3"><a></a><span class="ex">nsys-ui</span> report1.nsys-rep <span class="co"># Examine the report in the GUI</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="practical-time-10-minutes" class="slide level2">
+<h2>Practical time! (10 minutes)</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>Run Nsight Systems on the provided code!</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a></a><span class="ex">./build.sh</span>               <span class="co"># Build the application</span></span>
+<span id="cb5-2"><a></a><span class="ex">nsys</span> profile a.out 32    <span class="co"># Create a profile report of the code</span></span>
+<span id="cb5-3"><a></a><span class="ex">nsys-ui</span> report1.nsys-rep <span class="co"># Examine the report in the GUI</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Tasks:</p>
 <ul>
 <li>Familiarise yourself with the timeline view.</li>
@@ -324,311 +395,357 @@ Duncan Leggat
 <li>Use the CUDA API track check which CUDA functions are being called.</li>
 </ul>
 <p>Record in the shared document the order and time taken of actions on the device.</p>
+</div><div class="column" style="width:30%;">
+<p><a href="https://github.com/DiRAC-Training/GPPT-WS01/tree/main/single_gpu_exercises"><img data-src="images/exercise_qr.svg"></a></p>
+<div style="margin-top: -70px;">
+
+</div>
+<div class="r-stack">
+<p><em>Exercise repo</em></p>
+</div>
+</div></div>
 </section>
 <section id="using-nsight-systems" class="slide level2">
 <h2>Using Nsight Systems</h2>
 <ul>
-<li>Shows run times, data transfers and kernel overheads.</li>
-<li>First port of call for sanity checking programs.</li>
-<li>Graphical representation of the code’s running.</li>
-<li>Timeline helps quickly spot if something is obviously wrong;
+<li class="fragment">Shows run times, data transfers and kernel overheads.</li>
+<li class="fragment">First port of call for sanity checking programs.</li>
+<li class="fragment">Graphical representation of the code’s running.</li>
+<li class="fragment">Timeline helps quickly spot if something is obviously wrong;
 <ul>
-<li>Many data transfers,</li>
-<li>Long-running kernels.</li>
+<li class="fragment">Many data transfers,</li>
+<li class="fragment">Long-running kernels.</li>
 </ul></li>
-<li>Identifying longer kernels, or kernels that are called a lot, can provide potential optimisation targets</li>
+<li class="fragment">Identifying longer kernels, or kernels that are called a lot, can provide potential optimisation targets</li>
 </ul>
 </section></section>
 <section>
 <section id="nsight-compute" class="title-slide slide level1 center">
 <h1>Nsight Compute</h1>
 
-<img data-src="images/compute_overview.png" class="r-stretch"></section>
+<img data-src="images/overview_zoomed.png" class="r-stretch"></section>
 <section id="using-nsight-compute" class="slide level2">
 <h2>Using Nsight Compute</h2>
 <div class="columns">
 <div class="column" style="width:45%;">
+<div style="font-size: 130%;">
 <p><strong>Command line</strong></p>
-<p><code>ncu &lt;options&gt; [application name]</code></p>
+</div>
+<div class="fragment">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="ex">ncu</span> <span class="op">&lt;</span>options<span class="op">&gt;</span> <span class="pp">[</span><span class="ss">application</span><span class="pp">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>By default, provides a minimal performance analysis in the command line.</p>
 <p>Has an SQL database behind the scenes that can be queried for complex analysis.</p>
+</div>
 </div><div class="column" style="width:10%;">
 
 </div><div class="column" style="width:45%;">
+<div style="font-size: 130%;">
 <p><strong>In GUI</strong></p>
-<p><code>ncu-ui</code></p>
+</div>
+<div class="fragment">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a></a><span class="ex">ncu-ui</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Launches the Compute GUI.</p>
 <p>Analysis can be run directly from the GUI.</p>
 <p>Provides detailed metrics simply.</p>
+</div>
 </div></div>
 </section>
-<section id="exercise-run-nsight-conpute-through-cli-5-mins" class="slide level2">
-<h2>Exercise: Run Nsight Conpute through CLI (5 mins)</h2>
+<section id="exercise-run-nsight-compute-through-cli-5-mins" class="slide level2">
+<h2>Exercise: Run Nsight Compute through CLI (5 mins)</h2>
 <p>Use Nsight Compute on the same code.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">ncu</span> <span class="at">-k</span> axpy_kernel a.out 32</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><em><code>-k</code> here filters the output to only show the desired kernels.</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a></a><span class="ex">ncu</span> <span class="at">-k</span> axpy_kernel a.out 32</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em><code>-k</code> here tells the profiler to run only on the desired kernels.</em></p>
 <p>Make sure the command runs, and take a look at the output. Write down the kernel’s execution time in the shared document.</p>
 </section>
-<section id="using-nsights-compute" class="slide level2">
-<h2>Using Nsights Compute</h2>
+<section id="using-nsight-compute-1" class="slide level2">
+<h2>Using Nsight Compute</h2>
 <p>Important concepts you should have seen:</p>
 <ul>
-<li>Compute and memory throughputs</li>
-<li>Launch parameters</li>
-<li>Occupancy</li>
+<li class="fragment">Compute and memory throughputs</li>
+<li class="fragment">Launch parameters</li>
+<li class="fragment">Occupancy</li>
 </ul>
+<div class="fragment">
 <p>Additional information available in the GUI:</p>
 <ul>
 <li>Source view, instructions and compute resources</li>
 </ul>
-<p><em>Note:</em>The profiler offers hints on improving performance.</p>
+</div>
+<div class="fragment">
+<p><strong><em>Note:</em></strong> The profiler offers hints on improving performance.</p>
+</div>
 </section>
 <section id="compute-concepts-speed-of-light-throughput" class="slide level2">
 <h2>Compute concepts: Speed of Light Throughput</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a>    <span class="ex">-----------------------</span> <span class="at">-----------</span> <span class="at">----------------</span></span>
-<span id="cb3-2"><a></a>    <span class="ex">Metric</span> Name             Metric Unit     Metric Value</span>
-<span id="cb3-3"><a></a>    <span class="ex">-----------------------</span> <span class="at">-----------</span> <span class="at">----------------</span></span>
-<span id="cb3-4"><a></a>    <span class="ex">DRAM</span> Frequency                  Ghz             1.21</span>
-<span id="cb3-5"><a></a>    <span class="ex">SM</span> Frequency                    Mhz           765.00</span>
-<span id="cb3-6"><a></a>    <span class="ex">Elapsed</span> Cycles                cycle    1,428,679,972</span>
-<span id="cb3-7"><a></a>    <span class="ex">Memory</span> Throughput                 %            84.59</span>
-<span id="cb3-8"><a></a>    <span class="ex">DRAM</span> Throughput                   %            84.59</span>
-<span id="cb3-9"><a></a>    <span class="ex">Duration</span>                          s             1.87</span>
-<span id="cb3-10"><a></a>    <span class="ex">L1/TEX</span> Cache Throughput           %            21.85</span>
-<span id="cb3-11"><a></a>    <span class="ex">L2</span> Cache Throughput               %            86.27</span>
-<span id="cb3-12"><a></a>    <span class="ex">SM</span> Active Cycles              cycle 1,428,575,871.03</span>
-<span id="cb3-13"><a></a>    <span class="ex">Compute</span> <span class="er">(</span><span class="ex">SM</span><span class="kw">)</span> <span class="ex">Throughput</span>           %             6.75</span>
-<span id="cb3-14"><a></a>    <span class="ex">-----------------------</span> <span class="at">-----------</span> <span class="at">----------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a>    <span class="ex">-----------------------</span> <span class="at">-----------</span> <span class="at">----------------</span></span>
+<span id="cb9-2"><a></a>    <span class="ex">Metric</span> Name             Metric Unit     Metric Value</span>
+<span id="cb9-3"><a></a>    <span class="ex">-----------------------</span> <span class="at">-----------</span> <span class="at">----------------</span></span>
+<span id="cb9-4"><a></a>    <span class="ex">DRAM</span> Frequency                  Ghz             1.21</span>
+<span id="cb9-5"><a></a>    <span class="ex">SM</span> Frequency                    Mhz           765.00</span>
+<span id="cb9-6"><a></a>    <span class="ex">Elapsed</span> Cycles                cycle    1,428,679,972</span>
+<span id="cb9-7"><a></a>    <span class="ex">Memory</span> Throughput                 %            84.59</span>
+<span id="cb9-8"><a></a>    <span class="ex">DRAM</span> Throughput                   %            84.59</span>
+<span id="cb9-9"><a></a>    <span class="ex">Duration</span>                          s             1.87</span>
+<span id="cb9-10"><a></a>    <span class="ex">L1/TEX</span> Cache Throughput           %            21.85</span>
+<span id="cb9-11"><a></a>    <span class="ex">L2</span> Cache Throughput               %            86.27</span>
+<span id="cb9-12"><a></a>    <span class="ex">SM</span> Active Cycles              cycle 1,428,575,871.03</span>
+<span id="cb9-13"><a></a>    <span class="ex">Compute</span> <span class="er">(</span><span class="ex">SM</span><span class="kw">)</span> <span class="ex">Throughput</span>           %             6.75</span>
+<span id="cb9-14"><a></a>    <span class="ex">-----------------------</span> <span class="at">-----------</span> <span class="at">----------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Memory and compute usage of the resource as a ratio against the maximum possible of the hardware</p>
+</section>
+<section id="compute-concepts-speed-of-light-throughput-1" class="slide level2">
+<h2>Compute concepts: Speed of Light Throughput</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-code-line-numbers="9"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a></a>    <span class="ex">-----------------------</span> <span class="at">-----------</span> <span class="at">----------------</span></span>
+<span id="cb10-2"><a></a>    <span class="ex">Metric</span> Name             Metric Unit     Metric Value</span>
+<span id="cb10-3"><a></a>    <span class="ex">-----------------------</span> <span class="at">-----------</span> <span class="at">----------------</span></span>
+<span id="cb10-4"><a></a>    <span class="ex">DRAM</span> Frequency                  Ghz             1.21</span>
+<span id="cb10-5"><a></a>    <span class="ex">SM</span> Frequency                    Mhz           765.00</span>
+<span id="cb10-6"><a></a>    <span class="ex">Elapsed</span> Cycles                cycle    1,428,679,972</span>
+<span id="cb10-7"><a></a>    <span class="ex">Memory</span> Throughput                 %            84.59</span>
+<span id="cb10-8"><a></a>    <span class="ex">DRAM</span> Throughput                   %            84.59</span>
+<span id="cb10-9"><a></a>    <span class="ex">Duration</span>                          s             1.87</span>
+<span id="cb10-10"><a></a>    <span class="ex">L1/TEX</span> Cache Throughput           %            21.85</span>
+<span id="cb10-11"><a></a>    <span class="ex">L2</span> Cache Throughput               %            86.27</span>
+<span id="cb10-12"><a></a>    <span class="ex">SM</span> Active Cycles              cycle 1,428,575,871.03</span>
+<span id="cb10-13"><a></a>    <span class="ex">Compute</span> <span class="er">(</span><span class="ex">SM</span><span class="kw">)</span> <span class="ex">Throughput</span>           %             6.75</span>
+<span id="cb10-14"><a></a>    <span class="ex">-----------------------</span> <span class="at">-----------</span> <span class="at">----------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>How long the kernel took to run to completion</p>
 </section>
 <section id="compute-concepts-launch-statistics" class="slide level2">
 <h2>Compute concepts: Launch Statistics</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a></a>    <span class="ex">Section:</span> Launch Statistics</span>
-<span id="cb4-2"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span>
-<span id="cb4-3"><a></a>    <span class="ex">Metric</span> Name                          Metric Unit    Metric Value</span>
-<span id="cb4-4"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span>
-<span id="cb4-5"><a></a>    <span class="ex">Block</span> Size                                                   256</span>
-<span id="cb4-6"><a></a>    <span class="ex">Function</span> Cache Configuration                     CachePreferNone</span>
-<span id="cb4-7"><a></a>    <span class="ex">Grid</span> Size                                                 16,384</span>
-<span id="cb4-8"><a></a>    <span class="ex">Registers</span> Per Thread             register/thread              16</span>
-<span id="cb4-9"><a></a>    <span class="ex">Shared</span> Memory Configuration Size           Kbyte           32.77</span>
-<span id="cb4-10"><a></a>    <span class="ex">Driver</span> Shared Memory Per Block       Kbyte/block            1.02</span>
-<span id="cb4-11"><a></a>    <span class="ex">Dynamic</span> Shared Memory Per Block       byte/block               0</span>
-<span id="cb4-12"><a></a>    <span class="ex">Static</span> Shared Memory Per Block        byte/block               0</span>
-<span id="cb4-13"><a></a>    <span class="co"># SMs                                         SM             108</span></span>
-<span id="cb4-14"><a></a>    <span class="ex">Stack</span> Size                                                 1,024</span>
-<span id="cb4-15"><a></a>    <span class="ex">Threads</span>                                   thread       4,194,304</span>
-<span id="cb4-16"><a></a>    <span class="co"># TPCs                                                        54</span></span>
-<span id="cb4-17"><a></a>    <span class="ex">Enabled</span> TPC IDs                                              all</span>
-<span id="cb4-18"><a></a>    <span class="ex">Uses</span> Green Context                                             0</span>
-<span id="cb4-19"><a></a>    <span class="ex">Waves</span> Per SM                                               18.96</span>
-<span id="cb4-20"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a></a>    <span class="ex">Section:</span> Launch Statistics</span>
+<span id="cb11-2"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span>
+<span id="cb11-3"><a></a>    <span class="ex">Metric</span> Name                          Metric Unit    Metric Value</span>
+<span id="cb11-4"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span>
+<span id="cb11-5"><a></a>    <span class="ex">Block</span> Size                                                   256</span>
+<span id="cb11-6"><a></a>    <span class="ex">Function</span> Cache Configuration                     CachePreferNone</span>
+<span id="cb11-7"><a></a>    <span class="ex">Grid</span> Size                                                 16,384</span>
+<span id="cb11-8"><a></a>    <span class="ex">Registers</span> Per Thread             register/thread              16</span>
+<span id="cb11-9"><a></a>    <span class="ex">Shared</span> Memory Configuration Size           Kbyte           32.77</span>
+<span id="cb11-10"><a></a>    <span class="ex">Driver</span> Shared Memory Per Block       Kbyte/block            1.02</span>
+<span id="cb11-11"><a></a>    <span class="ex">Dynamic</span> Shared Memory Per Block       byte/block               0</span>
+<span id="cb11-12"><a></a>    <span class="ex">Static</span> Shared Memory Per Block        byte/block               0</span>
+<span id="cb11-13"><a></a>    <span class="co"># SMs                                         SM             108</span></span>
+<span id="cb11-14"><a></a>    <span class="ex">Stack</span> Size                                                 1,024</span>
+<span id="cb11-15"><a></a>    <span class="ex">Threads</span>                                   thread       4,194,304</span>
+<span id="cb11-16"><a></a>    <span class="co"># TPCs                                                        54</span></span>
+<span id="cb11-17"><a></a>    <span class="ex">Enabled</span> TPC IDs                                              all</span>
+<span id="cb11-18"><a></a>    <span class="ex">Uses</span> Green Context                                             0</span>
+<span id="cb11-19"><a></a>    <span class="ex">Waves</span> Per SM                                               18.96</span>
+<span id="cb11-20"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="compute-concepts-launch-statistics-1" class="slide level2">
 <h2>Compute concepts: Launch Statistics</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-code-line-numbers="5,7"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a></a>    <span class="ex">Section:</span> Launch Statistics</span>
-<span id="cb5-2"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span>
-<span id="cb5-3"><a></a>    <span class="ex">Metric</span> Name                          Metric Unit    Metric Value</span>
-<span id="cb5-4"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span>
-<span id="cb5-5"><a></a>    <span class="ex">Block</span> Size                                                   256</span>
-<span id="cb5-6"><a></a>    <span class="ex">Function</span> Cache Configuration                     CachePreferNone</span>
-<span id="cb5-7"><a></a>    <span class="ex">Grid</span> Size                                                 16,384</span>
-<span id="cb5-8"><a></a>    <span class="ex">Registers</span> Per Thread             register/thread              16</span>
-<span id="cb5-9"><a></a>    <span class="ex">Shared</span> Memory Configuration Size           Kbyte           32.77</span>
-<span id="cb5-10"><a></a>    <span class="ex">Driver</span> Shared Memory Per Block       Kbyte/block            1.02</span>
-<span id="cb5-11"><a></a>    <span class="ex">Dynamic</span> Shared Memory Per Block       byte/block               0</span>
-<span id="cb5-12"><a></a>    <span class="ex">Static</span> Shared Memory Per Block        byte/block               0</span>
-<span id="cb5-13"><a></a>    <span class="co"># SMs                                         SM             108</span></span>
-<span id="cb5-14"><a></a>    <span class="ex">Stack</span> Size                                                 1,024</span>
-<span id="cb5-15"><a></a>    <span class="ex">Threads</span>                                   thread       4,194,304</span>
-<span id="cb5-16"><a></a>    <span class="co"># TPCs                                                        54</span></span>
-<span id="cb5-17"><a></a>    <span class="ex">Enabled</span> TPC IDs                                              all</span>
-<span id="cb5-18"><a></a>    <span class="ex">Uses</span> Green Context                                             0</span>
-<span id="cb5-19"><a></a>    <span class="ex">Waves</span> Per SM                                               18.96</span>
-<span id="cb5-20"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-code-line-numbers="5,7"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a></a>    <span class="ex">Section:</span> Launch Statistics</span>
+<span id="cb12-2"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span>
+<span id="cb12-3"><a></a>    <span class="ex">Metric</span> Name                          Metric Unit    Metric Value</span>
+<span id="cb12-4"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span>
+<span id="cb12-5"><a></a>    <span class="ex">Block</span> Size                                                   256</span>
+<span id="cb12-6"><a></a>    <span class="ex">Function</span> Cache Configuration                     CachePreferNone</span>
+<span id="cb12-7"><a></a>    <span class="ex">Grid</span> Size                                                 16,384</span>
+<span id="cb12-8"><a></a>    <span class="ex">Registers</span> Per Thread             register/thread              16</span>
+<span id="cb12-9"><a></a>    <span class="ex">Shared</span> Memory Configuration Size           Kbyte           32.77</span>
+<span id="cb12-10"><a></a>    <span class="ex">Driver</span> Shared Memory Per Block       Kbyte/block            1.02</span>
+<span id="cb12-11"><a></a>    <span class="ex">Dynamic</span> Shared Memory Per Block       byte/block               0</span>
+<span id="cb12-12"><a></a>    <span class="ex">Static</span> Shared Memory Per Block        byte/block               0</span>
+<span id="cb12-13"><a></a>    <span class="co"># SMs                                         SM             108</span></span>
+<span id="cb12-14"><a></a>    <span class="ex">Stack</span> Size                                                 1,024</span>
+<span id="cb12-15"><a></a>    <span class="ex">Threads</span>                                   thread       4,194,304</span>
+<span id="cb12-16"><a></a>    <span class="co"># TPCs                                                        54</span></span>
+<span id="cb12-17"><a></a>    <span class="ex">Enabled</span> TPC IDs                                              all</span>
+<span id="cb12-18"><a></a>    <span class="ex">Uses</span> Green Context                                             0</span>
+<span id="cb12-19"><a></a>    <span class="ex">Waves</span> Per SM                                               18.96</span>
+<span id="cb12-20"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Grid dimensions (as defined by the launch parameters)</p>
 </section>
 <section id="compute-concepts-launch-statistics-2" class="slide level2">
 <h2>Compute concepts: Launch Statistics</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-code-line-numbers="8"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a>    <span class="ex">Section:</span> Launch Statistics</span>
-<span id="cb6-2"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span>
-<span id="cb6-3"><a></a>    <span class="ex">Metric</span> Name                          Metric Unit    Metric Value</span>
-<span id="cb6-4"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span>
-<span id="cb6-5"><a></a>    <span class="ex">Block</span> Size                                                   256</span>
-<span id="cb6-6"><a></a>    <span class="ex">Function</span> Cache Configuration                     CachePreferNone</span>
-<span id="cb6-7"><a></a>    <span class="ex">Grid</span> Size                                                 16,384</span>
-<span id="cb6-8"><a></a>    <span class="ex">Registers</span> Per Thread             register/thread              16</span>
-<span id="cb6-9"><a></a>    <span class="ex">Shared</span> Memory Configuration Size           Kbyte           32.77</span>
-<span id="cb6-10"><a></a>    <span class="ex">Driver</span> Shared Memory Per Block       Kbyte/block            1.02</span>
-<span id="cb6-11"><a></a>    <span class="ex">Dynamic</span> Shared Memory Per Block       byte/block               0</span>
-<span id="cb6-12"><a></a>    <span class="ex">Static</span> Shared Memory Per Block        byte/block               0</span>
-<span id="cb6-13"><a></a>    <span class="co"># SMs                                         SM             108</span></span>
-<span id="cb6-14"><a></a>    <span class="ex">Stack</span> Size                                                 1,024</span>
-<span id="cb6-15"><a></a>    <span class="ex">Threads</span>                                   thread       4,194,304</span>
-<span id="cb6-16"><a></a>    <span class="co"># TPCs                                                        54</span></span>
-<span id="cb6-17"><a></a>    <span class="ex">Enabled</span> TPC IDs                                              all</span>
-<span id="cb6-18"><a></a>    <span class="ex">Uses</span> Green Context                                             0</span>
-<span id="cb6-19"><a></a>    <span class="ex">Waves</span> Per SM                                               18.96</span>
-<span id="cb6-20"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-code-line-numbers="8"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a></a>    <span class="ex">Section:</span> Launch Statistics</span>
+<span id="cb13-2"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span>
+<span id="cb13-3"><a></a>    <span class="ex">Metric</span> Name                          Metric Unit    Metric Value</span>
+<span id="cb13-4"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span>
+<span id="cb13-5"><a></a>    <span class="ex">Block</span> Size                                                   256</span>
+<span id="cb13-6"><a></a>    <span class="ex">Function</span> Cache Configuration                     CachePreferNone</span>
+<span id="cb13-7"><a></a>    <span class="ex">Grid</span> Size                                                 16,384</span>
+<span id="cb13-8"><a></a>    <span class="ex">Registers</span> Per Thread             register/thread              16</span>
+<span id="cb13-9"><a></a>    <span class="ex">Shared</span> Memory Configuration Size           Kbyte           32.77</span>
+<span id="cb13-10"><a></a>    <span class="ex">Driver</span> Shared Memory Per Block       Kbyte/block            1.02</span>
+<span id="cb13-11"><a></a>    <span class="ex">Dynamic</span> Shared Memory Per Block       byte/block               0</span>
+<span id="cb13-12"><a></a>    <span class="ex">Static</span> Shared Memory Per Block        byte/block               0</span>
+<span id="cb13-13"><a></a>    <span class="co"># SMs                                         SM             108</span></span>
+<span id="cb13-14"><a></a>    <span class="ex">Stack</span> Size                                                 1,024</span>
+<span id="cb13-15"><a></a>    <span class="ex">Threads</span>                                   thread       4,194,304</span>
+<span id="cb13-16"><a></a>    <span class="co"># TPCs                                                        54</span></span>
+<span id="cb13-17"><a></a>    <span class="ex">Enabled</span> TPC IDs                                              all</span>
+<span id="cb13-18"><a></a>    <span class="ex">Uses</span> Green Context                                             0</span>
+<span id="cb13-19"><a></a>    <span class="ex">Waves</span> Per SM                                               18.96</span>
+<span id="cb13-20"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Number of registers that each thread uses (counted during kernel running)</p>
 </section>
 <section id="compute-concepts-launch-statistics-3" class="slide level2">
 <h2>Compute concepts: Launch Statistics</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-code-line-numbers="9-12"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a></a>    <span class="ex">Section:</span> Launch Statistics</span>
-<span id="cb7-2"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span>
-<span id="cb7-3"><a></a>    <span class="ex">Metric</span> Name                          Metric Unit    Metric Value</span>
-<span id="cb7-4"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span>
-<span id="cb7-5"><a></a>    <span class="ex">Block</span> Size                                                   256</span>
-<span id="cb7-6"><a></a>    <span class="ex">Function</span> Cache Configuration                     CachePreferNone</span>
-<span id="cb7-7"><a></a>    <span class="ex">Grid</span> Size                                                 16,384</span>
-<span id="cb7-8"><a></a>    <span class="ex">Registers</span> Per Thread             register/thread              16</span>
-<span id="cb7-9"><a></a>    <span class="ex">Shared</span> Memory Configuration Size           Kbyte           32.77</span>
-<span id="cb7-10"><a></a>    <span class="ex">Driver</span> Shared Memory Per Block       Kbyte/block            1.02</span>
-<span id="cb7-11"><a></a>    <span class="ex">Dynamic</span> Shared Memory Per Block       byte/block               0</span>
-<span id="cb7-12"><a></a>    <span class="ex">Static</span> Shared Memory Per Block        byte/block               0</span>
-<span id="cb7-13"><a></a>    <span class="co"># SMs                                         SM             108</span></span>
-<span id="cb7-14"><a></a>    <span class="ex">Stack</span> Size                                                 1,024</span>
-<span id="cb7-15"><a></a>    <span class="ex">Threads</span>                                   thread       4,194,304</span>
-<span id="cb7-16"><a></a>    <span class="co"># TPCs                                                        54</span></span>
-<span id="cb7-17"><a></a>    <span class="ex">Enabled</span> TPC IDs                                              all</span>
-<span id="cb7-18"><a></a>    <span class="ex">Uses</span> Green Context                                             0</span>
-<span id="cb7-19"><a></a>    <span class="ex">Waves</span> Per SM                                               18.96</span>
-<span id="cb7-20"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-code-line-numbers="9-12"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a></a>    <span class="ex">Section:</span> Launch Statistics</span>
+<span id="cb14-2"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span>
+<span id="cb14-3"><a></a>    <span class="ex">Metric</span> Name                          Metric Unit    Metric Value</span>
+<span id="cb14-4"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span>
+<span id="cb14-5"><a></a>    <span class="ex">Block</span> Size                                                   256</span>
+<span id="cb14-6"><a></a>    <span class="ex">Function</span> Cache Configuration                     CachePreferNone</span>
+<span id="cb14-7"><a></a>    <span class="ex">Grid</span> Size                                                 16,384</span>
+<span id="cb14-8"><a></a>    <span class="ex">Registers</span> Per Thread             register/thread              16</span>
+<span id="cb14-9"><a></a>    <span class="ex">Shared</span> Memory Configuration Size           Kbyte           32.77</span>
+<span id="cb14-10"><a></a>    <span class="ex">Driver</span> Shared Memory Per Block       Kbyte/block            1.02</span>
+<span id="cb14-11"><a></a>    <span class="ex">Dynamic</span> Shared Memory Per Block       byte/block               0</span>
+<span id="cb14-12"><a></a>    <span class="ex">Static</span> Shared Memory Per Block        byte/block               0</span>
+<span id="cb14-13"><a></a>    <span class="co"># SMs                                         SM             108</span></span>
+<span id="cb14-14"><a></a>    <span class="ex">Stack</span> Size                                                 1,024</span>
+<span id="cb14-15"><a></a>    <span class="ex">Threads</span>                                   thread       4,194,304</span>
+<span id="cb14-16"><a></a>    <span class="co"># TPCs                                                        54</span></span>
+<span id="cb14-17"><a></a>    <span class="ex">Enabled</span> TPC IDs                                              all</span>
+<span id="cb14-18"><a></a>    <span class="ex">Uses</span> Green Context                                             0</span>
+<span id="cb14-19"><a></a>    <span class="ex">Waves</span> Per SM                                               18.96</span>
+<span id="cb14-20"><a></a>    <span class="ex">--------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Shared memory. From launch parameters and measured in use.</p>
 </section>
 <section id="compute-concepts-occupancy" class="slide level2">
 <h2>Compute concepts: Occupancy</h2>
 <p>The ratio of active warps to the theoretical maximum possible on the hardware.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a></a>    <span class="ex">Section:</span> Occupancy</span>
-<span id="cb8-2"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
-<span id="cb8-3"><a></a>    <span class="ex">Metric</span> Name                     Metric Unit Metric Value</span>
-<span id="cb8-4"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
-<span id="cb8-5"><a></a>    <span class="ex">Block</span> Limit SM                        block           32</span>
-<span id="cb8-6"><a></a>    <span class="ex">Block</span> Limit Registers                 block           16</span>
-<span id="cb8-7"><a></a>    <span class="ex">Block</span> Limit Shared Mem                block           32</span>
-<span id="cb8-8"><a></a>    <span class="ex">Block</span> Limit Warps                     block            8</span>
-<span id="cb8-9"><a></a>    <span class="ex">Theoretical</span> Active Warps per SM        warp           64</span>
-<span id="cb8-10"><a></a>    <span class="ex">Theoretical</span> Occupancy                     %          100</span>
-<span id="cb8-11"><a></a>    <span class="ex">Achieved</span> Occupancy                        %        64.83</span>
-<span id="cb8-12"><a></a>    <span class="ex">Achieved</span> Active Warps Per SM           warp        41.49</span>
-<span id="cb8-13"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a></a>    <span class="ex">Section:</span> Occupancy</span>
+<span id="cb15-2"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
+<span id="cb15-3"><a></a>    <span class="ex">Metric</span> Name                     Metric Unit Metric Value</span>
+<span id="cb15-4"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
+<span id="cb15-5"><a></a>    <span class="ex">Block</span> Limit SM                        block           32</span>
+<span id="cb15-6"><a></a>    <span class="ex">Block</span> Limit Registers                 block           16</span>
+<span id="cb15-7"><a></a>    <span class="ex">Block</span> Limit Shared Mem                block           32</span>
+<span id="cb15-8"><a></a>    <span class="ex">Block</span> Limit Warps                     block            8</span>
+<span id="cb15-9"><a></a>    <span class="ex">Theoretical</span> Active Warps per SM        warp           64</span>
+<span id="cb15-10"><a></a>    <span class="ex">Theoretical</span> Occupancy                     %          100</span>
+<span id="cb15-11"><a></a>    <span class="ex">Achieved</span> Occupancy                        %        64.83</span>
+<span id="cb15-12"><a></a>    <span class="ex">Achieved</span> Active Warps Per SM           warp        41.49</span>
+<span id="cb15-13"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="compute-concepts-occupancy-1" class="slide level2">
 <h2>Compute concepts: Occupancy</h2>
 <p>The ratio of active warps to the theoretical maximum possible on the hardware.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-code-line-numbers="10-11"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a>    <span class="ex">Section:</span> Occupancy</span>
-<span id="cb9-2"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
-<span id="cb9-3"><a></a>    <span class="ex">Metric</span> Name                     Metric Unit Metric Value</span>
-<span id="cb9-4"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
-<span id="cb9-5"><a></a>    <span class="ex">Block</span> Limit SM                        block           32</span>
-<span id="cb9-6"><a></a>    <span class="ex">Block</span> Limit Registers                 block           16</span>
-<span id="cb9-7"><a></a>    <span class="ex">Block</span> Limit Shared Mem                block           32</span>
-<span id="cb9-8"><a></a>    <span class="ex">Block</span> Limit Warps                     block            8</span>
-<span id="cb9-9"><a></a>    <span class="ex">Theoretical</span> Active Warps per SM        warp           64</span>
-<span id="cb9-10"><a></a>    <span class="ex">Theoretical</span> Occupancy                     %          100</span>
-<span id="cb9-11"><a></a>    <span class="ex">Achieved</span> Occupancy                        %        64.83</span>
-<span id="cb9-12"><a></a>    <span class="ex">Achieved</span> Active Warps Per SM           warp        41.49</span>
-<span id="cb9-13"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Theoretical = maxmimum possible given the properties of the kernel Achieved = Real occupancy (given thread overheads etc.)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-code-line-numbers="10-11"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a></a>    <span class="ex">Section:</span> Occupancy</span>
+<span id="cb16-2"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
+<span id="cb16-3"><a></a>    <span class="ex">Metric</span> Name                     Metric Unit Metric Value</span>
+<span id="cb16-4"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
+<span id="cb16-5"><a></a>    <span class="ex">Block</span> Limit SM                        block           32</span>
+<span id="cb16-6"><a></a>    <span class="ex">Block</span> Limit Registers                 block           16</span>
+<span id="cb16-7"><a></a>    <span class="ex">Block</span> Limit Shared Mem                block           32</span>
+<span id="cb16-8"><a></a>    <span class="ex">Block</span> Limit Warps                     block            8</span>
+<span id="cb16-9"><a></a>    <span class="ex">Theoretical</span> Active Warps per SM        warp           64</span>
+<span id="cb16-10"><a></a>    <span class="ex">Theoretical</span> Occupancy                     %          100</span>
+<span id="cb16-11"><a></a>    <span class="ex">Achieved</span> Occupancy                        %        64.83</span>
+<span id="cb16-12"><a></a>    <span class="ex">Achieved</span> Active Warps Per SM           warp        41.49</span>
+<span id="cb16-13"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Theoretical = maximum possible given the properties of the kernel</p>
+<p>Achieved = Real occupancy (given thread overheads etc.)</p>
 </section>
 <section id="compute-concepts-occupancy-2" class="slide level2">
 <h2>Compute concepts: Occupancy</h2>
 <p>The ratio of active warps to the theoretical maximum possible on the hardware.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-code-line-numbers="5"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a></a>    <span class="ex">Section:</span> Occupancy</span>
-<span id="cb10-2"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
-<span id="cb10-3"><a></a>    <span class="ex">Metric</span> Name                     Metric Unit Metric Value</span>
-<span id="cb10-4"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
-<span id="cb10-5"><a></a>    <span class="ex">Block</span> Limit SM                        block           32</span>
-<span id="cb10-6"><a></a>    <span class="ex">Block</span> Limit Registers                 block           16</span>
-<span id="cb10-7"><a></a>    <span class="ex">Block</span> Limit Shared Mem                block           32</span>
-<span id="cb10-8"><a></a>    <span class="ex">Block</span> Limit Warps                     block            8</span>
-<span id="cb10-9"><a></a>    <span class="ex">Theoretical</span> Active Warps per SM        warp           64</span>
-<span id="cb10-10"><a></a>    <span class="ex">Theoretical</span> Occupancy                     %          100</span>
-<span id="cb10-11"><a></a>    <span class="ex">Achieved</span> Occupancy                        %        64.83</span>
-<span id="cb10-12"><a></a>    <span class="ex">Achieved</span> Active Warps Per SM           warp        41.49</span>
-<span id="cb10-13"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-code-line-numbers="5"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a></a>    <span class="ex">Section:</span> Occupancy</span>
+<span id="cb17-2"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
+<span id="cb17-3"><a></a>    <span class="ex">Metric</span> Name                     Metric Unit Metric Value</span>
+<span id="cb17-4"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
+<span id="cb17-5"><a></a>    <span class="ex">Block</span> Limit SM                        block           32</span>
+<span id="cb17-6"><a></a>    <span class="ex">Block</span> Limit Registers                 block           16</span>
+<span id="cb17-7"><a></a>    <span class="ex">Block</span> Limit Shared Mem                block           32</span>
+<span id="cb17-8"><a></a>    <span class="ex">Block</span> Limit Warps                     block            8</span>
+<span id="cb17-9"><a></a>    <span class="ex">Theoretical</span> Active Warps per SM        warp           64</span>
+<span id="cb17-10"><a></a>    <span class="ex">Theoretical</span> Occupancy                     %          100</span>
+<span id="cb17-11"><a></a>    <span class="ex">Achieved</span> Occupancy                        %        64.83</span>
+<span id="cb17-12"><a></a>    <span class="ex">Achieved</span> Active Warps Per SM           warp        41.49</span>
+<span id="cb17-13"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Fixed hardware cap on the number of blocks an SM can hold</p>
 </section>
 <section id="compute-concepts-occupancy-3" class="slide level2">
 <h2>Compute concepts: Occupancy</h2>
 <p>The ratio of active warps to the theoretical maximum possible on the hardware.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-code-line-numbers="6"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a></a>    <span class="ex">Section:</span> Occupancy</span>
-<span id="cb11-2"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
-<span id="cb11-3"><a></a>    <span class="ex">Metric</span> Name                     Metric Unit Metric Value</span>
-<span id="cb11-4"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
-<span id="cb11-5"><a></a>    <span class="ex">Block</span> Limit SM                        block           32</span>
-<span id="cb11-6"><a></a>    <span class="ex">Block</span> Limit Registers                 block           16</span>
-<span id="cb11-7"><a></a>    <span class="ex">Block</span> Limit Shared Mem                block           32</span>
-<span id="cb11-8"><a></a>    <span class="ex">Block</span> Limit Warps                     block            8</span>
-<span id="cb11-9"><a></a>    <span class="ex">Theoretical</span> Active Warps per SM        warp           64</span>
-<span id="cb11-10"><a></a>    <span class="ex">Theoretical</span> Occupancy                     %          100</span>
-<span id="cb11-11"><a></a>    <span class="ex">Achieved</span> Occupancy                        %        64.83</span>
-<span id="cb11-12"><a></a>    <span class="ex">Achieved</span> Active Warps Per SM           warp        41.49</span>
-<span id="cb11-13"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-code-line-numbers="6"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a></a>    <span class="ex">Section:</span> Occupancy</span>
+<span id="cb18-2"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
+<span id="cb18-3"><a></a>    <span class="ex">Metric</span> Name                     Metric Unit Metric Value</span>
+<span id="cb18-4"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
+<span id="cb18-5"><a></a>    <span class="ex">Block</span> Limit SM                        block           32</span>
+<span id="cb18-6"><a></a>    <span class="ex">Block</span> Limit Registers                 block           16</span>
+<span id="cb18-7"><a></a>    <span class="ex">Block</span> Limit Shared Mem                block           32</span>
+<span id="cb18-8"><a></a>    <span class="ex">Block</span> Limit Warps                     block            8</span>
+<span id="cb18-9"><a></a>    <span class="ex">Theoretical</span> Active Warps per SM        warp           64</span>
+<span id="cb18-10"><a></a>    <span class="ex">Theoretical</span> Occupancy                     %          100</span>
+<span id="cb18-11"><a></a>    <span class="ex">Achieved</span> Occupancy                        %        64.83</span>
+<span id="cb18-12"><a></a>    <span class="ex">Achieved</span> Active Warps Per SM           warp        41.49</span>
+<span id="cb18-13"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The SM’s register file divided by the registers each block needs.</p>
 </section>
 <section id="compute-concepts-occupancy-4" class="slide level2">
 <h2>Compute concepts: Occupancy</h2>
 <p>The ratio of active warps to the theoretical maximum possible on the hardware.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-code-line-numbers="7"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a></a>    <span class="ex">Section:</span> Occupancy</span>
-<span id="cb12-2"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
-<span id="cb12-3"><a></a>    <span class="ex">Metric</span> Name                     Metric Unit Metric Value</span>
-<span id="cb12-4"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
-<span id="cb12-5"><a></a>    <span class="ex">Block</span> Limit SM                        block           32</span>
-<span id="cb12-6"><a></a>    <span class="ex">Block</span> Limit Registers                 block           16</span>
-<span id="cb12-7"><a></a>    <span class="ex">Block</span> Limit Shared Mem                block           32</span>
-<span id="cb12-8"><a></a>    <span class="ex">Block</span> Limit Warps                     block            8</span>
-<span id="cb12-9"><a></a>    <span class="ex">Theoretical</span> Active Warps per SM        warp           64</span>
-<span id="cb12-10"><a></a>    <span class="ex">Theoretical</span> Occupancy                     %          100</span>
-<span id="cb12-11"><a></a>    <span class="ex">Achieved</span> Occupancy                        %        64.83</span>
-<span id="cb12-12"><a></a>    <span class="ex">Achieved</span> Active Warps Per SM           warp        41.49</span>
-<span id="cb12-13"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-code-line-numbers="7"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a></a>    <span class="ex">Section:</span> Occupancy</span>
+<span id="cb19-2"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
+<span id="cb19-3"><a></a>    <span class="ex">Metric</span> Name                     Metric Unit Metric Value</span>
+<span id="cb19-4"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
+<span id="cb19-5"><a></a>    <span class="ex">Block</span> Limit SM                        block           32</span>
+<span id="cb19-6"><a></a>    <span class="ex">Block</span> Limit Registers                 block           16</span>
+<span id="cb19-7"><a></a>    <span class="ex">Block</span> Limit Shared Mem                block           32</span>
+<span id="cb19-8"><a></a>    <span class="ex">Block</span> Limit Warps                     block            8</span>
+<span id="cb19-9"><a></a>    <span class="ex">Theoretical</span> Active Warps per SM        warp           64</span>
+<span id="cb19-10"><a></a>    <span class="ex">Theoretical</span> Occupancy                     %          100</span>
+<span id="cb19-11"><a></a>    <span class="ex">Achieved</span> Occupancy                        %        64.83</span>
+<span id="cb19-12"><a></a>    <span class="ex">Achieved</span> Active Warps Per SM           warp        41.49</span>
+<span id="cb19-13"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The SM’s shared memory divided by the amount each block requests.</p>
 </section>
 <section id="compute-concepts-occupancy-5" class="slide level2">
 <h2>Compute concepts: Occupancy</h2>
 <p>The ratio of active warps to the theoretical maximum possible on the hardware.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-code-line-numbers="8"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a></a>    <span class="ex">Section:</span> Occupancy</span>
-<span id="cb13-2"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
-<span id="cb13-3"><a></a>    <span class="ex">Metric</span> Name                     Metric Unit Metric Value</span>
-<span id="cb13-4"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
-<span id="cb13-5"><a></a>    <span class="ex">Block</span> Limit SM                        block           32</span>
-<span id="cb13-6"><a></a>    <span class="ex">Block</span> Limit Registers                 block           16</span>
-<span id="cb13-7"><a></a>    <span class="ex">Block</span> Limit Shared Mem                block           32</span>
-<span id="cb13-8"><a></a>    <span class="ex">Block</span> Limit Warps                     block            8</span>
-<span id="cb13-9"><a></a>    <span class="ex">Theoretical</span> Active Warps per SM        warp           64</span>
-<span id="cb13-10"><a></a>    <span class="ex">Theoretical</span> Occupancy                     %          100</span>
-<span id="cb13-11"><a></a>    <span class="ex">Achieved</span> Occupancy                        %        64.83</span>
-<span id="cb13-12"><a></a>    <span class="ex">Achieved</span> Active Warps Per SM           warp        41.49</span>
-<span id="cb13-13"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-code-line-numbers="8"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a></a>    <span class="ex">Section:</span> Occupancy</span>
+<span id="cb20-2"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
+<span id="cb20-3"><a></a>    <span class="ex">Metric</span> Name                     Metric Unit Metric Value</span>
+<span id="cb20-4"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
+<span id="cb20-5"><a></a>    <span class="ex">Block</span> Limit SM                        block           32</span>
+<span id="cb20-6"><a></a>    <span class="ex">Block</span> Limit Registers                 block           16</span>
+<span id="cb20-7"><a></a>    <span class="ex">Block</span> Limit Shared Mem                block           32</span>
+<span id="cb20-8"><a></a>    <span class="ex">Block</span> Limit Warps                     block            8</span>
+<span id="cb20-9"><a></a>    <span class="ex">Theoretical</span> Active Warps per SM        warp           64</span>
+<span id="cb20-10"><a></a>    <span class="ex">Theoretical</span> Occupancy                     %          100</span>
+<span id="cb20-11"><a></a>    <span class="ex">Achieved</span> Occupancy                        %        64.83</span>
+<span id="cb20-12"><a></a>    <span class="ex">Achieved</span> Active Warps Per SM           warp        41.49</span>
+<span id="cb20-13"><a></a>    <span class="ex">-------------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The SM’s maximum number of warps divided by the warps per block.</p>
 </section>
 <section id="occupancy-caveat" class="slide level2">
 <h2>Occupancy caveat</h2>
-<p><em>Higher occupancy is <strong>not</strong> always higher performance!</em></p>
+<p>Generally, you should be aiming to maximise usage of the GPU.</p>
+<div class="fragment">
+<p><em>Higher occupancy is not <strong>always</strong> higher performance!</em></p>
+</div>
+<div class="fragment">
 <p>Some lower occupancy scenarios that run more efficiently:</p>
 <ul>
-<li>Threads that require many registers but few memory accesses.</li>
-<li>Lower thread counts running on properly coalesced memory.</li>
+<li class="fragment">Threads that require many registers but few memory accesses.</li>
+<li class="fragment">Lower thread counts running on properly coalesced memory.</li>
+<li class="fragment">Kernels that require a lot of shared memory.</li>
 </ul>
+</div>
 </section>
 <section id="compute-concepts-memory-workload" class="slide level2">
 <h2>Compute concepts: Memory workload</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a></a>    <span class="ex">Section:</span> GPU and Memory Workload Distribution</span>
-<span id="cb14-2"><a></a>    <span class="ex">--------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
-<span id="cb14-3"><a></a>    <span class="ex">Metric</span> Name                Metric Unit Metric Value</span>
-<span id="cb14-4"><a></a>    <span class="ex">--------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
-<span id="cb14-5"><a></a>    <span class="ex">Average</span> DRAM Active Cycles       cycle    13,501.20</span>
-<span id="cb14-6"><a></a>    <span class="ex">Total</span> DRAM Elapsed Cycles        cycle   39,540,736</span>
-<span id="cb14-7"><a></a>    <span class="ex">Average</span> L1 Active Cycles         cycle   618,614.50</span>
-<span id="cb14-8"><a></a>    <span class="ex">Total</span> L1 Elapsed Cycles          cycle   67,216,096</span>
-<span id="cb14-9"><a></a>    <span class="ex">Average</span> L2 Active Cycles         cycle      194,794</span>
-<span id="cb14-10"><a></a>    <span class="ex">Total</span> L2 Elapsed Cycles          cycle   48,816,560</span>
-<span id="cb14-11"><a></a>    <span class="ex">Average</span> SM Active Cycles         cycle   618,614.50</span>
-<span id="cb14-12"><a></a>    <span class="ex">Total</span> SM Elapsed Cycles          cycle   67,216,096</span>
-<span id="cb14-13"><a></a>    <span class="ex">Average</span> SMSP Active Cycles       cycle   618,525.90</span>
-<span id="cb14-14"><a></a>    <span class="ex">Total</span> SMSP Elapsed Cycles        cycle  268,864,384</span>
-<span id="cb14-15"><a></a>    <span class="ex">--------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a></a>    <span class="ex">Section:</span> GPU and Memory Workload Distribution</span>
+<span id="cb21-2"><a></a>    <span class="ex">--------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
+<span id="cb21-3"><a></a>    <span class="ex">Metric</span> Name                Metric Unit Metric Value</span>
+<span id="cb21-4"><a></a>    <span class="ex">--------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span>
+<span id="cb21-5"><a></a>    <span class="ex">Average</span> DRAM Active Cycles       cycle    13,501.20</span>
+<span id="cb21-6"><a></a>    <span class="ex">Total</span> DRAM Elapsed Cycles        cycle   39,540,736</span>
+<span id="cb21-7"><a></a>    <span class="ex">Average</span> L1 Active Cycles         cycle   618,614.50</span>
+<span id="cb21-8"><a></a>    <span class="ex">Total</span> L1 Elapsed Cycles          cycle   67,216,096</span>
+<span id="cb21-9"><a></a>    <span class="ex">Average</span> L2 Active Cycles         cycle      194,794</span>
+<span id="cb21-10"><a></a>    <span class="ex">Total</span> L2 Elapsed Cycles          cycle   48,816,560</span>
+<span id="cb21-11"><a></a>    <span class="ex">Average</span> SM Active Cycles         cycle   618,614.50</span>
+<span id="cb21-12"><a></a>    <span class="ex">Total</span> SM Elapsed Cycles          cycle   67,216,096</span>
+<span id="cb21-13"><a></a>    <span class="ex">Average</span> SMSP Active Cycles       cycle   618,525.90</span>
+<span id="cb21-14"><a></a>    <span class="ex">Total</span> SMSP Elapsed Cycles        cycle  268,864,384</span>
+<span id="cb21-15"><a></a>    <span class="ex">--------------------------</span> <span class="at">-----------</span> <span class="at">------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Displays the number of memory cycles for the kernel.</p>
 <p>We won’t be using this information in the workshop.</p>
 </section>
@@ -636,28 +753,45 @@ Duncan Leggat
 <h2>Exercise: Playing with occupancy!</h2>
 <p>Reminder of the factors that impact occupancy:</p>
 <ul>
-<li>Hardware limits in the GPU,</li>
-<li>Grid and block size,</li>
-<li>Shared memory usage,</li>
-<li>Registers per thread.</li>
+<li class="fragment">Hardware limits in the GPU,</li>
+<li class="fragment">Grid and block size,</li>
+<li class="fragment">Shared memory usage,</li>
+<li class="fragment">Registers per thread.</li>
 </ul>
+<div class="fragment">
 <p>We will now go through a set of exercises that demonstrate these factors.</p>
+</div>
 </section>
 <section id="occupancy-exercises-20-minutes" class="slide level2">
 <h2>Occupancy exercises (20 minutes)</h2>
+<div style="font-size: 120%;">
 <p><strong>1) Grid and block size</strong></p>
+</div>
+<div style="margin-top: -20px;">
+
+</div>
 <ul>
 <li><code>launch_param_size</code> directory - where you already are!</li>
 </ul>
+<div style="font-size: 120%;">
 <p><strong>2) Register use per thread</strong></p>
+</div>
+<div style="margin-top: -20px;">
+
+</div>
 <ul>
 <li><code>registers</code> directory</li>
 </ul>
+<div style="font-size: 120%;">
 <p><strong>3) Shared memory per block</strong></p>
+</div>
+<div style="margin-top: -20px;">
+
+</div>
 <ul>
 <li><code>shared_memory</code> directory</li>
 </ul>
-<p>The code for all exercises vary a single parameter that controls the amount of the resource the kernels use - check the <code>README.md</code> in each directory for more information!</p>
+<p>In each code, a single parameter controls the amount of resources the kernels use - check the <code>README.md</code> in each directory for more information!</p>
 <p>Make a note of the parameters you test, and how they impact the runtime and occupancy.</p>
 </section>
 <section id="occupancy-i-grid-and-block-size" class="slide level2">
@@ -751,9 +885,12 @@ Duncan Leggat
 </tr>
 </tbody>
 </table>
+<div class="fragment">
+<p><strong>Takeaways:</strong></p>
+</div>
 <ul>
-<li>The number of registers that will be used by a thread is often unintuitive.</li>
-<li>A profiler will measure the use directly, making it a valuable tool here.</li>
+<li class="fragment">The number of registers that will be used by a thread is often unintuitive.</li>
+<li class="fragment">A profiler will measure the use directly, making it a valuable tool here.</li>
 </ul>
 </section>
 <section id="occupancy-iii-shared-memory" class="slide level2">
@@ -807,44 +944,56 @@ Duncan Leggat
 </tr>
 </tbody>
 </table>
+</section>
+<section id="occupancy-iii-shared-memory-takeaways" class="slide level2">
+<h2>Occupancy III: Shared Memory takeaways</h2>
 <ul>
-<li>Useful when you need a lot of data re-use
+<li class="fragment">Useful when you need a lot of data re-use
 <ul>
-<li>GPUs, unlike CPUs, are <em>NOT</em> good at caching memory.</li>
-<li>Loops can benefit from using shared memory when you would think L2 cache should be used</li>
+<li class="fragment">GPUs, unlike CPUs, are <em>NOT</em> good at caching memory.</li>
+<li class="fragment">Loops can benefit from using shared memory when you would think L2 cache should be used</li>
 </ul></li>
-<li>Too much use will impact performance!</li>
+<li class="fragment">Too much use will impact performance!</li>
 </ul>
 </section>
-<section id="compute-concepts-instruction-and-source-view" class="slide level2">
-<h2>Compute concepts: Instruction and source view</h2>
+<section id="source-and-instruction-view" class="slide level2">
+<h2>Source and instruction view</h2>
 
-<img data-src="images/instructions.png" class="r-stretch"><p>Compute offers a detailed view of the instructions run in a kernel and the resourse use at each step.</p>
-<p><strong>NOTE!</strong> This is outside the scope of this workshop, and is being presented for completion!</p>
-</section></section>
+<img data-src="images/source_view_zoomed.png" class="r-stretch"></section></section>
 <section>
 <section id="profiling-for-performance" class="title-slide slide level1 center">
 <h1>Profiling for performance</h1>
+<div class="fragment">
 <p>Interactive examples of some key concepts in performant GPU code.</p>
+</div>
+<div class="fragment">
 <p>The concepts we will be investigating:</p>
+</div>
 <ul>
-<li>Memory coalescence</li>
-<li>Branching in kernels</li>
-<li>Minimising data transfers</li>
+<li class="fragment">Memory coalescence</li>
+<li class="fragment">Branching in kernels</li>
+<li class="fragment">Minimising data transfers</li>
 </ul>
 </section>
 <section id="memory-coalescence-exercise-15-minutes" class="slide level2">
 <h2>Memory coalescence exercise (15 minutes)</h2>
+<div class="fragment">
 <p>Warps work most efficiently when each thread accesses sequential (‘coalesced’) memory.</p>
+</div>
+<div class="fragment">
 <p>To demonstrate this, we will profile the program in the <code>indexing</code> directory.</p>
-<p>The program contains two kernels that perform the same summation operation on a 256 x 2^20 data structure, but with different memory access patterns:</p>
+</div>
+<div class="fragment">
+<p>The program contains two kernels that perform summation operations on a 256 x 2^20 data structure. They perform the same amount of work, but with different memory access patterns:</p>
+</div>
 <ul>
-<li><code>row_sum_strided</code> accesses its rows contiguously, in the manner that would be optimised for CPU.</li>
-<li><code>row_sum_coalesced</code> uses a transposed indexing so that adjacent threads are accessing memory 1 float apart.</li>
+<li class="fragment"><code>row_sum_strided</code> accesses its rows contiguously, in the manner that would be optimised for CPU.</li>
+<li class="fragment"><code>row_sum_coalesced</code> uses a transposed indexing so that adjacent threads are accessing memory 1 float apart.</li>
 </ul>
 </section>
 <section id="memory-coalescence-discussion" class="slide level2">
 <h2>Memory coalescence discussion</h2>
+<div class="fragment">
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -863,29 +1012,39 @@ Duncan Leggat
 </tr>
 </tbody>
 </table>
+</div>
+<div class="fragment">
 <p>The coalesced accesses are substantially faster.</p>
-<p>Takeaways:</p>
+</div>
+<div class="fragment">
+<p><strong>Takeaways:</strong></p>
+</div>
 <ul>
-<li>Best practice is to design data to run well on the GPU from the start.</li>
-<li>It <em>might</em> be useful to spend time/compute to repack data into coalesced objects.</li>
-<li>Deciding which strategy is optimal is where the profiling cycling comes into its own!</li>
+<li class="fragment">Best practice is to design data to run well on the GPU from the start.</li>
+<li class="fragment">It <em>might</em> be useful to spend time/compute to repack data into coalesced objects.</li>
+<li class="fragment">Deciding which strategy is optimal is where the profiling cycling comes into its own!</li>
 </ul>
 </section>
-<section id="branching-in-kernels" class="slide level2">
-<h2>Branching in kernels</h2>
+<section id="branching-in-kernels-15-minutes" class="slide level2">
+<h2>Branching in kernels (15 minutes)</h2>
+<div class="fragment">
 <p>When threads in a warp take different branches in a kernel, the GPU runs both branches on every thread. A lot of branching in kernels can therefore hurt our performance.</p>
+</div>
+<div class="fragment">
 <p>Let’s look at a practical example, in the <code>branching</code> directory, which demonstrates this impact of branching on kernel run-time.</p>
+</div>
 <ul>
-<li>Each thread in the <code>branching_kernel</code> choses a branch based on its ID and an input parameter</li>
-<li>Changing the input parameter changes how coherent the warps are in branch selection.
+<li class="fragment">Each thread in the <code>branching_kernel</code> choses a branch based on its ID and an input parameter</li>
+<li class="fragment">Changing the input parameter changes how coherent the warps are in branch selection.
 <ul>
-<li>1 = Divergent warps</li>
-<li>32 = Coherent warps</li>
+<li class="fragment">1 = Divergent warps</li>
+<li class="fragment">32 = Coherent warps</li>
 </ul></li>
 </ul>
 </section>
 <section id="branching-exercise-discussion" class="slide level2">
 <h2>Branching exercise discussion</h2>
+<div class="fragment">
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -908,10 +1067,14 @@ Duncan Leggat
 </tr>
 </tbody>
 </table>
+</div>
+<div class="fragment">
+<p><strong>Takeaways:</strong></p>
+</div>
 <ul>
-<li>With divergent threads in the warp, the kernel runs each branch for every thread.</li>
-<li>When our warps coherently choose the same branch, we only need to run one of the branches, and our run time is halved.</li>
-<li>We can leverage this in the design of data structures and control paths, e.g.&nbsp;grouping boundary conditions together.</li>
+<li class="fragment">With divergent threads in the warp, the kernel runs each branch for every thread.</li>
+<li class="fragment">When our warps coherently choose the same branch, we only need to run one of the branches, and our run time is halved.</li>
+<li class="fragment">We can leverage this in the design of data structures and control paths, e.g.&nbsp;grouping boundary conditions together.</li>
 </ul>
 </section>
 <section id="minimising-data-transfers-30-minutes" class="slide level2">
@@ -919,26 +1082,40 @@ Duncan Leggat
 <p>You have probably heard that data transfers between host and device are very costly to the performance of your code.</p>
 <p>Now that you’re well-practiced in using a profiler, you can prove this for yourself!</p>
 <p>There are two demonstrations of how data transfers can impact performance to explore:</p>
+<div class="fragment">
+<div style="font-size: 120%;">
 <p><strong>1) Grouping transfers</strong></p>
+</div>
+<div style="margin-top: -20px;">
+
+</div>
 <ul>
 <li>In the <code>grouping_transfers</code> directory.</li>
 <li>Demonstrates how runtime is impacted by splitting data transfers.</li>
 </ul>
+</div>
+<div style="margin-top: -10px;">
+
+</div>
+<div class="fragment">
+<div style="font-size: 120%;">
 <p><strong>2) Avoiding additional transfers</strong></p>
+</div>
+<div style="margin-top: -20px;">
+
+</div>
 <ul>
 <li>In the <code>data_lifetime</code> directory.</li>
 <li>Improve runtime using innefficient GPU code to avoid extra data transfers</li>
 </ul>
+</div>
 </section>
 <section id="grouped-transfers-i" class="slide level2">
 <h2>Grouped transfers I</h2>
 <p>Making one large transfer is more efficient than making many, smaller transfers.</p>
-<p><img data-src="images/grouped_annotated.png"></p>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/grouping_zoomed.png"></p>
-<figcaption>The blank space between transfers shows the overhead associated with launching a transfer</figcaption>
-</figure>
+<div class="r-stack">
+<p><img data-src="images/grouped_annotated.png" class="fragment fade-in-then-out"></p>
+<p><img data-src="images/grouping_zoomed.png" class="fragment"></p>
 </div>
 </section>
 <section id="grouped-transfers-ii" class="slide level2">
@@ -985,28 +1162,40 @@ Duncan Leggat
 </tr>
 </tbody>
 </table>
-<p><strong>Remember!</strong> - The same overheads will also happen when launching kernels. - Launching many small transfers (or kernels!) in a loop is a very good way to run into large overheads, slowing down your code!</p>
+<div class="fragment">
+<p><strong>Remember!</strong></p>
+</div>
+<ul>
+<li class="fragment">The same overheads will also happen when launching kernels.</li>
+<li class="fragment">Launching many small transfers (or kernels!) in a loop is a very good way to run into large overheads, slowing down your code!</li>
+</ul>
 </section>
 <section id="data-lifetime" class="slide level2">
 <h2>Data lifetime</h2>
 <p>Because data transfers are very time-expensive, it is good practice to leave memory on the GPU for as long as possible.</p>
+<div class="fragment">
 <p>Sometimes, this means creating kernels for code that could be better optimised on CPU but is part of the way through a GPU workflow. The inefficient calculations on GPU might still be faster than a transfer to and from the host!</p>
+</div>
 </section>
 <section id="data-lifetime-exercise-15-minutes" class="slide level2">
 <h2>Data lifetime exercise (15 minutes)</h2>
 <p>Consider the program in the <code>data_lifetime</code> directory.</p>
 <p>The workflow of the program is:</p>
 <ul>
-<li>Carry out a Fast Fourier Transform (FFT) on a large data object - well suited to GPU,</li>
-<li>Re-normalise the array - a task better suited to CPU,</li>
-<li>Reverse the FFT on the GPU.</li>
+<li class="fragment">Carry out a Fast Fourier Transform (FFT) on a large data object - well suited to GPU,</li>
+<li class="fragment">Re-normalise the array - a task better suited to CPU,</li>
+<li class="fragment">Reverse the FFT on the GPU.</li>
 </ul>
+<div class="fragment">
 <p>Two versions of this workflow are presented:</p>
 <ul>
-<li><code>run_naive</code>, which transfers the data back to the CPU for the normalisation calculations,</li>
-<li><code>run_resident</code>, which uses a device kernel for the normalisation.</li>
+<li class="fragment"><code>run_naive</code>, which transfers the data back to the CPU for the normalisation calculations,</li>
+<li class="fragment"><code>run_resident</code>, which uses a device kernel for the normalisation.</li>
 </ul>
+</div>
+<div class="fragment">
 <p>Run Nsight Systems on this program to see how the two versions perform.</p>
+</div>
 </section>
 <section id="data-lifetime-exercise-discussion" class="slide level2">
 <h2>Data lifetime exercise discussion</h2>
@@ -1014,38 +1203,40 @@ Duncan Leggat
 <img data-src="images/data_lifetime_annotated.png" class="r-stretch"></section>
 <section id="data-lifetime-exercise-timing-table" class="slide level2">
 <h2>Data lifetime exercise timing table</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a></a> <span class="ex">**</span> CUDA GPU Kernel Summary <span class="er">(</span><span class="ex">cuda_gpu_kern_sum</span><span class="kw">)</span><span class="bu">:</span></span>
-<span id="cb15-2"><a></a></span>
-<span id="cb15-3"><a></a> <span class="ex">Time</span> <span class="er">(</span><span class="ex">%</span><span class="kw">)</span>  <span class="ex">Total</span> Time <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>  <span class="ex">Instances</span>  Avg <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>   <span class="ex">Med</span> <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>   <span class="ex">Min</span> <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>  <span class="ex">Max</span> <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>  <span class="ex">StdDev</span> <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>                <span class="ex">Name</span></span>
-<span id="cb15-4"><a></a> <span class="ex">--------</span>  <span class="at">---------------</span>  <span class="at">---------</span>  <span class="at">---------</span>  <span class="at">---------</span>  <span class="at">--------</span>  <span class="at">--------</span>  <span class="at">-----------</span>  <span class="at">------------------------------------</span></span>
-<span id="cb15-5"><a></a>     <span class="ex">95.6</span>        2,000,548          8  250,068.5  249,601.0   227,873   271,585     21,636.6  void regular_fft_factor<span class="op">&lt;</span>...<span class="op">&gt;</span>  <span class="er">(</span><span class="ex">cuFFT</span><span class="kw">)</span></span>
-<span id="cb15-6"><a></a>      <span class="ex">4.4</span>           92,896          1   92,896.0   92,896.0    92,896    92,896          0.0  normalise<span class="er">(</span><span class="ex">double2</span> <span class="pp">*</span>, double, int<span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a></a> <span class="ex">**</span> CUDA GPU MemOps Summary <span class="er">(</span><span class="ex">by</span> Time<span class="kw">)</span> <span class="kw">(</span><span class="ex">cuda_gpu_mem_time_sum</span><span class="kw">)</span><span class="bu">:</span></span>
-<span id="cb16-2"><a></a></span>
-<span id="cb16-3"><a></a> <span class="ex">Time</span> <span class="er">(</span><span class="ex">%</span><span class="kw">)</span>  <span class="ex">Total</span> Time <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>  <span class="ex">Count</span>   Avg <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>     <span class="ex">Med</span> <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>    <span class="ex">Min</span> <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>   <span class="ex">Max</span> <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>   <span class="ex">StdDev</span> <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>           <span class="ex">Operation</span></span>
-<span id="cb16-4"><a></a> <span class="ex">--------</span>  <span class="at">---------------</span>  <span class="at">-----</span>  <span class="at">-----------</span>  <span class="at">-----------</span>  <span class="at">---------</span>  <span class="at">---------</span>  <span class="at">-----------</span>  <span class="at">----------------------------</span></span>
-<span id="cb16-5"><a></a>     <span class="ex">58.2</span>       21,262,050      6  3,543,675.0  3,674,118.0      1,824  8,871,150  3,448,662.2  [CUDA memcpy Host-to-Device]</span>
-<span id="cb16-6"><a></a>     <span class="ex">41.8</span>       15,252,761      3  5,084,253.7  5,084,104.0  5,083,945  5,084,712        404.8  [CUDA memcpy Device-to-Host]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a></a> <span class="ex">**</span> CUDA GPU Kernel Summary <span class="er">(</span><span class="ex">cuda_gpu_kern_sum</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb22-2"><a></a></span>
+<span id="cb22-3"><a></a> <span class="ex">Time</span> <span class="er">(</span><span class="ex">%</span><span class="kw">)</span>  <span class="ex">Total</span> Time <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>  <span class="ex">Instances</span>  Avg <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>   <span class="ex">Med</span> <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>   <span class="ex">Min</span> <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>  <span class="ex">Max</span> <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>  <span class="ex">StdDev</span> <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>                <span class="ex">Name</span></span>
+<span id="cb22-4"><a></a> <span class="ex">--------</span>  <span class="at">---------------</span>  <span class="at">---------</span>  <span class="at">---------</span>  <span class="at">---------</span>  <span class="at">--------</span>  <span class="at">--------</span>  <span class="at">-----------</span>  <span class="at">------------------------------------</span></span>
+<span id="cb22-5"><a></a>     <span class="ex">95.6</span>        2,000,548          8  250,068.5  249,601.0   227,873   271,585     21,636.6  void regular_fft_factor<span class="op">&lt;</span>...<span class="op">&gt;</span>  <span class="er">(</span><span class="ex">cuFFT</span><span class="kw">)</span></span>
+<span id="cb22-6"><a></a>      <span class="ex">4.4</span>           92,896          1   92,896.0   92,896.0    92,896    92,896          0.0  normalise<span class="er">(</span><span class="ex">double2</span> <span class="pp">*</span>, double, int<span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a></a> <span class="ex">**</span> CUDA GPU MemOps Summary <span class="er">(</span><span class="ex">by</span> Time<span class="kw">)</span> <span class="kw">(</span><span class="ex">cuda_gpu_mem_time_sum</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb23-2"><a></a></span>
+<span id="cb23-3"><a></a> <span class="ex">Time</span> <span class="er">(</span><span class="ex">%</span><span class="kw">)</span>  <span class="ex">Total</span> Time <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>  <span class="ex">Count</span>   Avg <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>     <span class="ex">Med</span> <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>    <span class="ex">Min</span> <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>   <span class="ex">Max</span> <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>   <span class="ex">StdDev</span> <span class="er">(</span><span class="ex">ns</span><span class="kw">)</span>           <span class="ex">Operation</span></span>
+<span id="cb23-4"><a></a> <span class="ex">--------</span>  <span class="at">---------------</span>  <span class="at">-----</span>  <span class="at">-----------</span>  <span class="at">-----------</span>  <span class="at">---------</span>  <span class="at">---------</span>  <span class="at">-----------</span>  <span class="at">----------------------------</span></span>
+<span id="cb23-5"><a></a>     <span class="ex">58.2</span>       21,262,050      6  3,543,675.0  3,674,118.0      1,824  8,871,150  3,448,662.2  [CUDA memcpy Host-to-Device]</span>
+<span id="cb23-6"><a></a>     <span class="ex">41.8</span>       15,252,761      3  5,084,253.7  5,084,104.0  5,083,945  5,084,712        404.8  [CUDA memcpy Device-to-Host]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Sometimes it is better to leave data resident on the GPU than to move it back to the CPU, where calculations might naively be more efficient.</p>
 </section>
 <section id="data-transfer-takeaways" class="slide level2">
 <h2>Data transfer takeaways</h2>
 <p>Putting everything we’ve learnt together about data transfers:</p>
 <ul>
-<li>Prefer fewer, larger transfers.</li>
-<li>Consider moving data over to the GPU earlier than needed if it can be added to another transfer.</li>
-<li>Sometimes inefficient GPU code will still save time over transferring back to the host.</li>
+<li class="fragment">Prefer fewer, larger transfers.</li>
+<li class="fragment">Consider moving data over to the GPU earlier than needed if it can be added to another transfer.</li>
+<li class="fragment">Sometimes inefficient GPU code will still save time over transferring back to the host.</li>
 </ul>
 </section>
 <section id="conclusions-and-takeaways" class="slide level2">
 <h2>Conclusions and takeaways</h2>
 <p>You should now have plenty of practical experience using both the Nsight Systems and Nsight Compute profilers! They are valuable tools for optimising GPU codes, and should be used as part of your regular workflow when trying to extract performance from your programs.</p>
-<p><em>REMEMBER!</em></p>
+<div class="fragment">
+<p><strong><em>REMEMBER!</em></strong></p>
+</div>
 <ul>
-<li>Higher occupancy is good, but is not always the most performant!</li>
-<li>Reduce data transfers!</li>
-<li>Coalesce your memory!</li>
-<li>Design your memory and data structures to suit the GPU!</li>
+<li class="fragment">Higher occupancy is good, but is not always the most performant!</li>
+<li class="fragment">Reduce data transfers!</li>
+<li class="fragment">Coalesce your memory!</li>
+<li class="fragment">Design your memory and data structures to suit the GPU!</li>
 </ul>
 
 
@@ -1086,7 +1277,7 @@ Duncan Leggat
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'smaller': false,
+'smaller': true,
  
         // Display controls in the bottom right corner
         controls: false,
@@ -1106,7 +1297,7 @@ Duncan Leggat
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',

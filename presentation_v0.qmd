@@ -1,7 +1,12 @@
 ---
 author:
   - Duncan Leggat
-format: revealjs
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    smaller: true
+    scrollable: true
 date: 2026-09-15
 title: Introducing GPU Profilers
 subtitle: GPPT Workshop
@@ -9,7 +14,7 @@ filters:
   - arrows
 ---
 
-# GPU Profiler
+# GPU Profilers
 
 ## What *is* a profiler?
 
@@ -26,20 +31,31 @@ Both measure performance of code, but with different goals.
 :::: {.columns}
 
 ::: {.column width="45%"}
+::: {style="font-size: 130%;"}
 **Profiling**
+:::
 
+:::{.fragment}
 Measuring performance metrics with the aim of understanding how the code works, and ultimately optimise performance.
+:::
+
 :::
 
 ::: {.column width="10%"}
 :::
 
 ::: {.column width="45%"}
-**Benchmarking**
 
+::: {style="font-size: 130%;"}
+**Benchmarking**
+:::
+
+:::{.fragment}
 Measures the performance of existing code. 
 
 Useful for comparing code on different hardwares, or testing the scaling of our programs.
+:::
+
 :::
 
 ::::
@@ -50,8 +66,11 @@ Useful for comparing code on different hardwares, or testing the scaling of our 
 :::: {.columns}
 
 ::: {.column width="45%"}
+::: {style="font-size: 130%;"}
 **Systems**
+:::
 
+:::{.fragment}
 Profiles the complete operation of the program from start to finish
 
 
@@ -63,12 +82,17 @@ Profiles the complete operation of the program from start to finish
 - Kernel overheads and runtimes
 :::
 
+:::
+
 ::: {.column width="10%"}
 :::
 
 ::: {.column width="45%"}
+::: {style="font-size: 130%;"}
 **Compute**
+:::
 
+::: {.fragment}
 Provides detailed information about the individual kernels
 
 *Highlights*
@@ -78,23 +102,29 @@ Provides detailed information about the individual kernels
 - Memory usage metrics
 :::
 
+:::
+
 ::::
 
 ## How do we use profilers to optimise? {style="text-align: center;"}
 
-[Run profiler on workflow]{.absolute top=150 left="33%"}
+[Run profiler on workflow]{.absolute top=150 left="33%" style="font-size: 135%;"}
 
 :::: {.columns .absolute top=300}
 
 ::: {.column width="45%"}
+::: {style="font-size: 135%;"}
 Implement optimisations
+:::
 :::
 
 ::: {.column width="10%"}
 :::
 
 ::: {.column width="45%"}
-Check profiler outputs for optimisation stratergies
+::: {style="font-size: 135%;"}
+Check profiler outputs for optimisation strategies
+:::
 :::
 
 ::::
@@ -104,37 +134,94 @@ Check profiler outputs for optimisation stratergies
 {{<arrow from="200,300" to="300,180" control1="250,200" position="absolute">}}
 
 
-# Nvidia's Nsight profilers
+# Nvidia's Nsight profilers {.nostretch}
+
+::: {layout-ncol=3}
+
+![](images/nsight_logo.png)
+
+![](images/nsight_sys_logo.png){width=190}
+
+![](images/nsight_ncu_logo.png){width=190}
+
+:::
+
+<div style="margin-top: -70px;"></div>
+
+
+::: {layout-ncol=3}
+
+` `
+
+Nsight Systems
+
+Nsight Compute
+
+:::
 
 # Nsight Systems
 
-![](images/system_data-lifetime.png)
+![](images/system_data-lifetime.png){width=1000}
 
 ## Running Nsight Systems
 
 :::: {.columns}
 
-::: {.column width="45%"}
+::: {.column width="46%"}
+::: {style="font-size: 130%;"}
 **Command line**
-
-`nsys profile [application name]`
-
-Produces a report file that can be used for later analysis
-
-Useful when working on a system with no x window access
 :::
 
-::: {.column width="10%"}
+::: {.fragment}
+```sh
+nsys profile [application name]
+```
+
+Produces a `.nsys-rep` report file.
 :::
 
-::: {.column width="45%"}
+::: {.fragment}
+This report can be opened in the GUI, or analysed directly in the command line.
+
+```sh
+nsys stats --report [option] [report]
+```
+
+Useful options:
+
+- `cuda_api_gpu_sum`
+- `cuda_gpu_kern_sum`
+- `openmp_sum`
+
+:::
+:::
+
+::: {.column width="8%"}
+:::
+
+::: {.column width="46%"}
+::: {style="font-size: 130%;"}
 **In GUI**
+:::
 
-`nsys-ui`
+:::{.fragment}
+```sh
+nsys-ui
+```
 
 Launches the Systems GUI.
 
 Analysis can be run directly from the GUI.
+:::
+
+:::{.fragment}
+```sh
+nsys-ui <report>
+```
+
+To open an existing report directly in the GUI.
+:::
+
 :::
 
 ::::
@@ -143,11 +230,13 @@ Analysis can be run directly from the GUI.
 
 ![](images/system_data-lifetime.png)
 
-## Practical time! (5-10 minutes)
+## Practical time! (10 minutes)
 
-[link to directory]
+:::: {.columns}
 
-Run Nsights Systems on the provided code!
+::: {.column width="70%"}
+
+Run Nsight Systems on the provided code!
 
 ```sh
 ./build.sh               # Build the application
@@ -157,13 +246,33 @@ nsys-ui report1.nsys-rep # Examine the report in the GUI
 
 Tasks:
 
+:::{.nonincremental}
 - Familiarise yourself with the timeline view.
 - Use the CUDA HW track to identify where the GPU is carrying out work.
 - Use the CUDA API track check which CUDA functions are being called.
+:::
 
 Record in the shared document the order and time taken of actions on the device.
 
+:::
+
+::: {.column width="30%"}
+
+[![](images/exercise_qr.svg)](https://github.com/DiRAC-Training/GPPT-WS01/tree/main/single_gpu_exercises)
+
+<div style="margin-top: -70px;"></div>
+
+::: {.r-stack}
+*Exercise repo*
+:::
+
+:::
+
+::::
+
 ## Using Nsight Systems
+
+
 
 - Shows run times, data transfers and kernel overheads.
 - First port of call for sanity checking programs.
@@ -175,29 +284,41 @@ Record in the shared document the order and time taken of actions on the device.
 
 # Nsight Compute
 
-![](images/compute_overview.png)
+![](images/overview_zoomed.png)
 
 ## Using Nsight Compute
 
 :::: {.columns}
 
 ::: {.column width="45%"}
+::: {style="font-size: 130%;"}
 **Command line**
+:::
 
-`ncu <options> [application name]`
+:::{.fragment}
+```sh
+ncu <options> [application]
+```
 
 By default, provides a minimal performance analysis in the command line.
 
 Has an SQL database behind the scenes that can be queried for complex analysis.
+:::
 :::
 
 ::: {.column width="10%"}
 :::
 
 ::: {.column width="45%"}
+::: {style="font-size: 130%;"}
 **In GUI**
+:::
 
-`ncu-ui`
+:::{.fragment}
+
+```sh
+ncu-ui
+```
 
 Launches the Compute GUI.
 
@@ -205,10 +326,11 @@ Analysis can be run directly from the GUI.
 
 Provides detailed metrics simply.
 :::
+:::
 
 ::::
 
-## Exercise: Run Nsight Conpute through CLI (5 mins)
+## Exercise: Run Nsight Compute through CLI (5 mins)
 
 Use Nsight Compute on the same code.
 
@@ -216,12 +338,12 @@ Use Nsight Compute on the same code.
 ncu -k axpy_kernel a.out 32
 ```
 
-*`-k` here filters the output to only show the desired kernels.*
+*`-k` here tells the profiler to run only on the desired kernels.*
 
 Make sure the command runs, and take a look at the output.
 Write down the kernel's execution time in the shared document.
 
-## Using Nsights Compute
+## Using Nsight Compute
 
 Important concepts you should have seen:
 
@@ -229,11 +351,17 @@ Important concepts you should have seen:
 - Launch parameters
 - Occupancy
 
+:::{.fragment}
 Additional information available in the GUI:
 
+:::{.nonincremental}
 - Source view, instructions and compute resources
+:::
+:::
 
-*Note:*The profiler offers hints on improving performance.
+:::{.fragment}
+***Note:*** The profiler offers hints on improving performance.
+:::
 
 ## Compute concepts: Speed of Light Throughput
 
@@ -256,6 +384,27 @@ Additional information available in the GUI:
 ```
 
 Memory and compute usage of the resource as a ratio against the maximum possible of the hardware
+
+## Compute concepts: Speed of Light Throughput
+
+```sh {code-line-numbers="9"}
+    ----------------------- ----------- ----------------
+    Metric Name             Metric Unit     Metric Value
+    ----------------------- ----------- ----------------
+    DRAM Frequency                  Ghz             1.21
+    SM Frequency                    Mhz           765.00
+    Elapsed Cycles                cycle    1,428,679,972
+    Memory Throughput                 %            84.59
+    DRAM Throughput                   %            84.59
+    Duration                          s             1.87
+    L1/TEX Cache Throughput           %            21.85
+    L2 Cache Throughput               %            86.27
+    SM Active Cycles              cycle 1,428,575,871.03
+    Compute (SM) Throughput           %             6.75
+    ----------------------- ----------- ----------------
+```
+
+How long the kernel took to run to completion
 
 ## Compute concepts: Launch Statistics
 
@@ -402,7 +551,8 @@ The ratio of active warps to the theoretical maximum possible on the hardware.
     Achieved Active Warps Per SM           warp        41.49
     ------------------------------- ----------- ------------
 ```
-Theoretical = maxmimum possible given the properties of the kernel
+Theoretical = maximum possible given the properties of the kernel
+
 Achieved = Real occupancy (given thread overheads etc.)
 
 ## Compute concepts: Occupancy
@@ -495,12 +645,18 @@ The SM's maximum number of warps divided by the warps per block.
 
 ## Occupancy caveat
 
-*Higher occupancy is **not** always higher performance!*
+Generally, you should be aiming to maximise usage of the GPU.
 
+:::{.fragment}
+*Higher occupancy is not **always** higher performance!*
+:::
+:::{.fragment}
 Some lower occupancy scenarios that run more efficiently:
 
 - Threads that require many registers but few memory accesses.
 - Lower thread counts running on properly coalesced memory.
+- Kernels that require a lot of shared memory.
+:::
 
 ## Compute concepts: Memory workload
 
@@ -535,23 +691,34 @@ Reminder of the factors that impact occupancy:
 - Shared memory usage,
 - Registers per thread.
 
+:::{.fragment}
 We will now go through a set of exercises that demonstrate these factors.
+:::
 
 ## Occupancy exercises (20 minutes)
 
+::: {style="font-size: 120%;"}
 **1) Grid and block size**
+:::
 
+<div style="margin-top: -20px;"></div>
+:::{.nonincremental}
 - `launch_param_size` directory - where you already are!
 
+::: {style="font-size: 120%;"}
 **2) Register use per thread**
-
+:::
+<div style="margin-top: -20px;"></div>
 - `registers` directory
 
+::: {style="font-size: 120%;"}
 **3) Shared memory per block**
-
+:::
+<div style="margin-top: -20px;"></div>
 - `shared_memory` directory
+:::
 
-The code for all exercises vary a single parameter that controls the amount of the resource the kernels use - check the `README.md` in each directory for more information!
+In each code, a single parameter controls the amount of resources the kernels use - check the `README.md` in each directory for more information!
 
 Make a note of the parameters you test, and how they impact the runtime and occupancy.
 
@@ -578,6 +745,10 @@ You should find that increasing `N` in the program decreases occupancy.
 | 8 | 44 | 290 | 62  |
 | 50 | 206 | 321 | 12.5 |
 
+:::{.fragment}
+**Takeaways:**
+:::
+
 - The number of registers that will be used by a thread is often unintuitive.
 - A profiler will measure the use directly, making it a valuable tool here.
 
@@ -594,24 +765,26 @@ Higher use of shared memory causes lower occupancy.
 | 20             |                  10kB | 14        |          87.5% |
 | 18             |                   9kB | 16        |           100% |
 
+## Occupancy III: Shared Memory takeaways
+
 - Useful when you need a lot of data re-use
   - GPUs, unlike CPUs, are *NOT* good at caching memory.
   - Loops can benefit from using shared memory when you would think L2 cache should be used
 - Too much use will impact performance!
 
-## Compute concepts: Instruction and source view
+## Source and instruction view
 
-![](images/instructions.png)
-
-Compute offers a detailed view of the instructions run in a kernel and the resourse use at each step.
-
-**NOTE!** This is outside the scope of this workshop, and is being presented for completion!
+![](images/source_view_zoomed.png)
 
 # Profiling for performance
 
+:::{.fragment}
 Interactive examples of some key concepts in performant GPU code.
+:::
 
+:::{.fragment}
 The concepts we will be investigating:
+:::
 
 - Memory coalescence
 - Branching in kernels
@@ -619,36 +792,55 @@ The concepts we will be investigating:
 
 ## Memory coalescence exercise (15 minutes)
 
+:::{.fragment}
 Warps work most efficiently when each thread accesses sequential ('coalesced') memory.
+:::
 
+:::{.fragment}
 To demonstrate this, we will profile the program in the `indexing` directory.
+:::
 
-The program contains two kernels that perform the same summation operation on a 256 x 2^20 data structure, but with different memory access patterns:
+:::{.fragment}
+The program contains two kernels that perform summation operations on a 256 x 2^20 data structure. They perform the same amount of work, but with different memory access patterns:
+:::
 
 - `row_sum_strided` accesses its rows contiguously, in the manner that would be optimised for CPU.
 - `row_sum_coalesced` uses a transposed indexing so that adjacent threads are accessing memory 1 float apart.
 
 ## Memory coalescence discussion
 
+:::{.fragment}
+
 | Kernel | duration (us) |
 | ------ | ------------- |
 | `row_sum_strided` | 3280 |
 | `row_sum_coalesced` | 764 |
 
-The coalesced accesses are substantially faster.
+:::
 
-Takeaways:
+:::{.fragment}
+The coalesced accesses are substantially faster.
+:::
+
+:::{.fragment}
+**Takeaways:**
+:::
 
 - Best practice is to design data to run well on the GPU from the start.
 - It *might* be useful to spend time/compute to repack data into coalesced objects.
 - Deciding which strategy is optimal is where the profiling cycling comes into its own!
 
-## Branching in kernels
+## Branching in kernels (15 minutes)
+
+:::{.fragment}
 
 When threads in a warp take different branches in a kernel, the GPU runs both branches on every thread.
 A lot of branching in kernels can therefore hurt our performance.
+:::
 
+:::{.fragment}
 Let's look at a practical example, in the `branching` directory, which demonstrates this impact of branching on kernel run-time.
+:::
 
 - Each thread in the `branching_kernel` choses a branch based on its ID and an input parameter
 - Changing the input parameter changes how coherent the warps are in branch selection.
@@ -657,11 +849,17 @@ Let's look at a practical example, in the `branching` directory, which demonstra
 
 ## Branching exercise discussion
 
+:::{.fragment}
 | Coherence_parameter | Runtime (us) |
 | --------------------| ------------ |
 | 1 (divergent warps) | 813 |
 | 16 | 813 |
 | 32 (coherent warps) | 418 |
+:::
+
+:::{.fragment}
+**Takeaways:**
+:::
 
 - With divergent threads in the warp, the kernel runs each branch for every thread.
 - When our warps coherently choose the same branch, we only need to run one of the branches, and our run time is halved.
@@ -675,23 +873,43 @@ Now that you're well-practiced in using a profiler, you can prove this for yours
 
 There are two demonstrations of how data transfers can impact performance to explore:
 
+:::{.nonincremental}
+
+:::{.fragment}
+::: {style="font-size: 120%;"}
 **1) Grouping transfers**
+:::
+<div style="margin-top: -20px;"></div>
 
 - In the `grouping_transfers` directory.
 - Demonstrates how runtime is impacted by splitting data transfers.
+:::
 
+<div style="margin-top: -10px;"></div>
+
+:::{.fragment}
+::: {style="font-size: 120%;"}
 **2) Avoiding additional transfers**
+:::
 
+<div style="margin-top: -20px;"></div>
 - In the `data_lifetime` directory.
 - Improve runtime using innefficient GPU code to avoid extra data transfers
+:::
+
+:::
 
 ## Grouped transfers I
 
 Making one large transfer is more efficient than making many, smaller transfers.
 
-![](images/grouped_annotated.png)
+:::{.r-stack}
 
-![The blank space between transfers shows the overhead associated with launching a transfer](images/grouping_zoomed.png)
+![](images/grouped_annotated.png){.fragment .fade-in-then-out}
+
+![](images/grouping_zoomed.png){.fragment}
+
+:::
 
 ## Grouped transfers II
 
@@ -704,7 +922,10 @@ Using the sqlite functionality of Systems we can produce a table that calculates
 |12800000 |  10   |  9811789   | 9649268  | 162521     |
 |128000000 | 1    |  9663991   | 9612501  | 51490      |
 
+:::{.fragment}
 **Remember!**
+:::
+
 - The same overheads will also happen when launching kernels.
 - Launching many small transfers (or kernels!) in a loop is a very good way to run into large overheads, slowing down your code!
 
@@ -712,8 +933,10 @@ Using the sqlite functionality of Systems we can produce a table that calculates
 
 Because data transfers are very time-expensive, it is good practice to leave memory on the GPU for as long as possible.
 
+:::{.fragment}
 Sometimes, this means creating kernels for code that could be better optimised on CPU but is part of the way through a GPU workflow.
 The inefficient calculations on GPU might still be faster than a transfer to and from the host!
+:::
 
 ## Data lifetime exercise (15 minutes)
 
@@ -725,12 +948,17 @@ The workflow of the program is:
 - Re-normalise the array - a task better suited to CPU,
 - Reverse the FFT on the GPU.
 
+:::{.fragment}
 Two versions of this workflow are presented:
 
 - `run_naive`, which transfers the data back to the CPU for the normalisation calculations,
 - `run_resident`, which uses a device kernel for the normalisation.
+:::
+
+:::{.fragment}
 
 Run Nsight Systems on this program to see how the two versions perform.
+:::
 
 ## Data lifetime exercise discussion
 
@@ -771,7 +999,9 @@ Putting everything we've learnt together about data transfers:
 You should now have plenty of practical experience using both the Nsight Systems and Nsight Compute profilers!
 They are valuable tools for optimising GPU codes, and should be used as part of your regular workflow when trying to extract performance from your programs.
 
-*REMEMBER!*
+:::{.fragment}
+***REMEMBER!***
+:::
 
 - Higher occupancy is good, but is not always the most performant!
 - Reduce data transfers!
