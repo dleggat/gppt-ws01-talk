@@ -161,7 +161,7 @@ Nsight Compute
 
 # Nsight Systems
 
-![](images/system_data-lifetime.png){width=1000}
+![](images/systems_view_zoomed.png){width=1000}
 
 ## Running Nsight Systems
 
@@ -228,7 +228,7 @@ To open an existing report directly in the GUI.
 
 ## Systems features: The timeline
 
-![](images/system_data-lifetime.png)
+![](images/systems_view_zoomed.png)
 
 ## Practical time! (10 minutes)
 
@@ -905,9 +905,9 @@ Making one large transfer is more efficient than making many, smaller transfers.
 
 :::{.r-stack}
 
-![](images/grouped_annotated.png){.fragment .fade-in-then-out}
+![](images/grouped_zoomed.png){.fragment .fade-in-then-out}
 
-![](images/grouping_zoomed.png){.fragment}
+![](images/grouping_zoomed_zoomed.png){.fragment}
 
 :::
 
@@ -962,7 +962,7 @@ Run Nsight Systems on this program to see how the two versions perform.
 
 ## Data lifetime exercise discussion
 
-![](images/data_lifetime_annotated.png)
+![](images/data_lifetime_zoomed.png)
 
 ## Data lifetime exercise timing table
 
