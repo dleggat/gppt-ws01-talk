@@ -99,7 +99,8 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-504da4544d4ace532b5256dda2282435.css">
+  <link rel="stylesheet" href="style.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -206,7 +207,10 @@
 <div class="quarto-title-author-name">
 Duncan Leggat 
 </div>
-</div>
+        <p class="quarto-title-affiliation">
+            <a href="https://www.ucl.ac.uk/advanced-research-computing">UCL ARC</a>
+          </p>
+    </div>
 </div>
 
   <p class="date">2026-09-15</p>
@@ -226,6 +230,37 @@ Duncan Leggat
 </ul></li>
 <li class="fragment">This presented information can then be used to engineer better performance from our code.</li>
 </ul>
+</section>
+<section id="how-does-a-profiler-collect-data" class="slide level2">
+<h2>How does a profiler collect data?</h2>
+<p>Types of data collection:</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div style="font-size: 130%;">
+<p><strong>Sampling</strong></p>
+</div>
+<ul>
+<li class="fragment">At a chosen frequency, query the hardware for usage.</li>
+<li class="fragment">Lightweight and fast.</li>
+<li class="fragment">Requires no changes to the source code.</li>
+<li class="fragment">Default for the profilers we will use today.</li>
+</ul>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:45%;">
+<div style="font-size: 130%;">
+<p><strong>Instrumented</strong></p>
+</div>
+<ul>
+<li class="fragment">Adding code or hooks to a program to record specific metrics.</li>
+<li class="fragment">More in-depth collection and specific targeting possible.</li>
+<li class="fragment">Introduces larger overheads during operation.</li>
+<li class="fragment">Can be requested of our profilers.</li>
+</ul>
+</div></div>
+<div class="fragment">
+<p>Today, we will only use sampled profiling.</p>
+</div>
 </section>
 <section id="profiling-vs-benchmarking" class="slide level2">
 <h2>Profiling vs Benchmarking</h2>
@@ -298,7 +333,7 @@ Duncan Leggat
 <p>Check profiler outputs for optimisation strategies</p>
 </div>
 </div></div>
-<p></p><div style="position: absolute; left: 780.0px; top: 160.0px; pointer-events: none; z-index: 9999;"><svg width="140.0" height="160.0" viewbox="0 0 140.0 160.0" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;"><defs><marker id="arrow-384792" markerwidth="10" markerheight="10" refx="0" refy="5.0" orient="auto-start-reverse" markerunits="strokeWidth"><path d="M 0 0 L 10 5.0 L 0 10 z" fill="black"></path></marker></defs><path d="M 20.0,20.0 Q 70.0,40.0 120.0,140.0" stroke="black" stroke-width="2" fill="none" marker-end="url(#arrow-384792)"></path></svg></div> <div style="position: absolute; left: 380.0px; top: 430.0px; pointer-events: none; z-index: 9999;"><svg width="340.0" height="90.0" viewbox="0 0 340.0 90.0" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;"><defs><marker id="arrow-474592" markerwidth="10" markerheight="10" refx="0" refy="5.0" orient="auto-start-reverse" markerunits="strokeWidth"><path d="M 0 0 L 10 5.0 L 0 10 z" fill="black"></path></marker></defs><path d="M 320.0,20.0 Q 170.0,70.0 20.0,20.0" stroke="black" stroke-width="2" fill="none" marker-end="url(#arrow-474592)"></path></svg></div> <div style="position: absolute; left: 180.0px; top: 160.0px; pointer-events: none; z-index: 9999;"><svg width="140.0" height="160.0" viewbox="0 0 140.0 160.0" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;"><defs><marker id="arrow-764328" markerwidth="10" markerheight="10" refx="0" refy="5.0" orient="auto-start-reverse" markerunits="strokeWidth"><path d="M 0 0 L 10 5.0 L 0 10 z" fill="black"></path></marker></defs><path d="M 20.0,140.0 Q 70.0,40.0 120.0,20.0" stroke="black" stroke-width="2" fill="none" marker-end="url(#arrow-764328)"></path></svg></div><p></p>
+<p></p><div style="position: absolute; left: 780.0px; top: 160.0px; pointer-events: none; z-index: 9999;"><svg width="140.0" height="160.0" viewbox="0 0 140.0 160.0" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;"><defs><marker id="arrow-938539" markerwidth="10" markerheight="10" refx="0" refy="5.0" orient="auto-start-reverse" markerunits="strokeWidth"><path d="M 0 0 L 10 5.0 L 0 10 z" fill="black"></path></marker></defs><path d="M 20.0,20.0 Q 70.0,40.0 120.0,140.0" stroke="black" stroke-width="2" fill="none" marker-end="url(#arrow-938539)"></path></svg></div> <div style="position: absolute; left: 380.0px; top: 430.0px; pointer-events: none; z-index: 9999;"><svg width="340.0" height="90.0" viewbox="0 0 340.0 90.0" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;"><defs><marker id="arrow-475584" markerwidth="10" markerheight="10" refx="0" refy="5.0" orient="auto-start-reverse" markerunits="strokeWidth"><path d="M 0 0 L 10 5.0 L 0 10 z" fill="black"></path></marker></defs><path d="M 320.0,20.0 Q 170.0,70.0 20.0,20.0" stroke="black" stroke-width="2" fill="none" marker-end="url(#arrow-475584)"></path></svg></div> <div style="position: absolute; left: 180.0px; top: 160.0px; pointer-events: none; z-index: 9999;"><svg width="140.0" height="160.0" viewbox="0 0 140.0 160.0" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;"><defs><marker id="arrow-945091" markerwidth="10" markerheight="10" refx="0" refy="5.0" orient="auto-start-reverse" markerunits="strokeWidth"><path d="M 0 0 L 10 5.0 L 0 10 z" fill="black"></path></marker></defs><path d="M 20.0,140.0 Q 70.0,40.0 120.0,20.0" stroke="black" stroke-width="2" fill="none" marker-end="url(#arrow-945091)"></path></svg></div><p></p>
 </section></section>
 <section id="nvidias-nsight-profilers" class="title-slide slide level1 nostretch center">
 <h1>Nvidia’s Nsight profilers</h1>
@@ -376,10 +411,6 @@ Duncan Leggat
 </div>
 </div></div>
 </section>
-<section id="systems-features-the-timeline" class="slide level2">
-<h2>Systems features: The timeline</h2>
-
-<img data-src="images/systems_view_zoomed.png" class="r-stretch"></section>
 <section id="practical-time-10-minutes" class="slide level2">
 <h2>Practical time! (10 minutes)</h2>
 <div class="columns">
@@ -403,6 +434,7 @@ Duncan Leggat
 <div class="r-stack">
 <p><em>Exercise repo</em></p>
 </div>
+<p><a href="https://github.com/DiRAC-Training/GPPT-WS01/tree/main/single_gpu_exercises">https://github.com/DiRAC-Training/GPPT-WS01/tree/main/single_gpu_exercises</a></p>
 </div></div>
 </section>
 <section id="using-nsight-systems" class="slide level2">
@@ -771,7 +803,7 @@ Duncan Leggat
 
 </div>
 <ul>
-<li><code>launch_param_size</code> directory - where you already are!</li>
+<li><code>launch_param_size</code> directory – where you already are!</li>
 </ul>
 <div style="font-size: 120%;">
 <p><strong>2) Register use per thread</strong></p>
@@ -791,7 +823,7 @@ Duncan Leggat
 <ul>
 <li><code>shared_memory</code> directory</li>
 </ul>
-<p>In each code, a single parameter controls the amount of resources the kernels use - check the <code>README.md</code> in each directory for more information!</p>
+<p>In each code, a single parameter controls the amount of resources the kernels use – check the <code>README.md</code> in each directory for more information!</p>
 <p>Make a note of the parameters you test, and how they impact the runtime and occupancy.</p>
 </section>
 <section id="occupancy-i-grid-and-block-size" class="slide level2">
@@ -1182,9 +1214,9 @@ Duncan Leggat
 <p>Consider the program in the <code>data_lifetime</code> directory.</p>
 <p>The workflow of the program is:</p>
 <ul>
-<li class="fragment">Carry out a Fast Fourier Transform (FFT) on a large data object - well suited to GPU,</li>
-<li class="fragment">Re-normalise the array - a task better suited to CPU,</li>
-<li class="fragment">Reverse the FFT on the GPU.</li>
+<li class="fragment">Carry out a Fast Fourier Transform (FFT) on a large data object – well suited to GPU,</li>
+<li class="fragment">Re-normalise the array – a task generally not worth offloading to GPU,</li>
+<li class="fragment">Reverse the FFT – on the GPU.</li>
 </ul>
 <div class="fragment">
 <p>Two versions of this workflow are presented:</p>
@@ -1200,7 +1232,7 @@ Duncan Leggat
 <section id="data-lifetime-exercise-discussion" class="slide level2">
 <h2>Data lifetime exercise discussion</h2>
 
-<img data-src="images/data_lifetime_zoomed.png" class="r-stretch"></section>
+<img data-src="images/native_arch-data_lifetime.png" class="r-stretch"></section>
 <section id="data-lifetime-exercise-timing-table" class="slide level2">
 <h2>Data lifetime exercise timing table</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a></a> <span class="ex">**</span> CUDA GPU Kernel Summary <span class="er">(</span><span class="ex">cuda_gpu_kern_sum</span><span class="kw">)</span><span class="bu">:</span></span>
@@ -1228,12 +1260,13 @@ Duncan Leggat
 </section>
 <section id="conclusions-and-takeaways" class="slide level2">
 <h2>Conclusions and takeaways</h2>
-<p>You should now have plenty of practical experience using both the Nsight Systems and Nsight Compute profilers! They are valuable tools for optimising GPU codes, and should be used as part of your regular workflow when trying to extract performance from your programs.</p>
+<p>You should now have plenty of practical experience using both the Nsight Systems and Nsight Compute profilers!</p>
+<p>They are valuable tools for optimising GPU codes, and should be used as part of your regular workflow when trying to extract performance from your programs.</p>
 <div class="fragment">
 <p><strong><em>REMEMBER!</em></strong></p>
 </div>
 <ul>
-<li class="fragment">Higher occupancy is good, but is not always the most performant!</li>
+<li class="fragment">Maximise resource usage – not <em>just</em> occupancy!</li>
 <li class="fragment">Reduce data transfers!</li>
 <li class="fragment">Coalesce your memory!</li>
 <li class="fragment">Design your memory and data structures to suit the GPU!</li>

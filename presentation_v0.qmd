@@ -7,6 +7,10 @@ format:
     incremental: true
     smaller: true
     scrollable: true
+    theme: [default, styles.scss]
+css: style.css
+institute:
+  - "[UCL ARC](https://www.ucl.ac.uk/advanced-research-computing)"
 date: 2026-09-15
 title: Introducing GPU Profilers
 subtitle: GPPT Workshop
@@ -22,6 +26,42 @@ filters:
 - Event records are collected through hardware counters, and provide performance information including:
   - Timing, hardware utilisation, instructions, call hierarchy and more.
 - This presented information can then be used to engineer better performance from our code.
+
+## How does a profiler collect data?
+
+Types of data collection:
+
+:::: {.columns}
+:::{.column width="45%"}
+::: {style="font-size: 130%;"}
+**Sampling**
+:::
+
+- At a chosen frequency, query the hardware for usage.
+- Lightweight and fast.
+- Requires no changes to the source code.
+- Default for the profilers we will use today.
+:::
+
+:::{.column width="10%"}
+:::
+
+:::{.column width="45%"}
+::: {style="font-size: 130%;"}
+**Instrumented**
+:::
+
+- Adding code or hooks to a program to record specific metrics.
+- More in-depth collection and specific targeting possible.
+- Introduces larger overheads during operation.
+- Can be requested of our profilers.
+:::
+
+::::
+
+:::{.fragment}
+Today, we will only use sampled profiling.
+:::
 
 ## Profiling vs Benchmarking
 
@@ -226,10 +266,6 @@ To open an existing report directly in the GUI.
 
 ::::
 
-## Systems features: The timeline
-
-![](images/systems_view_zoomed.png)
-
 ## Practical time! (10 minutes)
 
 :::: {.columns}
@@ -263,9 +299,9 @@ Record in the shared document the order and time taken of actions on the device.
 <div style="margin-top: -40px;"></div>
 
 ::: {.r-stack}
- *Exercise repo*
+*Exercise repo* 
 :::
-
+[https://github.com/DiRAC-Training/GPPT-WS01/tree/main/single_gpu_exercises](https://github.com/DiRAC-Training/GPPT-WS01/tree/main/single_gpu_exercises)
 :::
 
 ::::
@@ -703,7 +739,7 @@ We will now go through a set of exercises that demonstrate these factors.
 
 <div style="margin-top: -20px;"></div>
 :::{.nonincremental}
-- `launch_param_size` directory - where you already are!
+- `launch_param_size` directory – where you already are!
 
 ::: {style="font-size: 120%;"}
 **2) Register use per thread**
@@ -718,7 +754,7 @@ We will now go through a set of exercises that demonstrate these factors.
 - `shared_memory` directory
 :::
 
-In each code, a single parameter controls the amount of resources the kernels use - check the `README.md` in each directory for more information!
+In each code, a single parameter controls the amount of resources the kernels use – check the `README.md` in each directory for more information!
 
 Make a note of the parameters you test, and how they impact the runtime and occupancy.
 
@@ -944,9 +980,9 @@ Consider the program in the `data_lifetime` directory.
 
 The workflow of the program is:
 
-- Carry out a Fast Fourier Transform (FFT) on a large data object - well suited to GPU,
-- Re-normalise the array - a task better suited to CPU,
-- Reverse the FFT on the GPU.
+- Carry out a Fast Fourier Transform (FFT) on a large data object – well suited to GPU,
+- Re-normalise the array – a task generally not worth offloading to GPU,
+- Reverse the FFT – on the GPU.
 
 :::{.fragment}
 Two versions of this workflow are presented:
@@ -962,7 +998,7 @@ Run Nsight Systems on this program to see how the two versions perform.
 
 ## Data lifetime exercise discussion
 
-![](images/data_lifetime_zoomed.png)
+![](images/native_arch-data_lifetime.png)
 
 ## Data lifetime exercise timing table
 
@@ -997,13 +1033,14 @@ Putting everything we've learnt together about data transfers:
 ## Conclusions and takeaways
 
 You should now have plenty of practical experience using both the Nsight Systems and Nsight Compute profilers!
+
 They are valuable tools for optimising GPU codes, and should be used as part of your regular workflow when trying to extract performance from your programs.
 
 :::{.fragment}
 ***REMEMBER!***
 :::
 
-- Higher occupancy is good, but is not always the most performant!
+- Maximise resource usage – not *just* occupancy!
 - Reduce data transfers!
 - Coalesce your memory!
 - Design your memory and data structures to suit the GPU!
