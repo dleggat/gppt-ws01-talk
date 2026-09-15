@@ -46,7 +46,7 @@
     "href": "presentation_v0.html#practical-time-10-minutes",
     "title": "Introducing GPU Profilers",
     "section": "Practical time! (10 minutes)",
-    "text": "Practical time! (10 minutes)\n\n\nRun Nsight Systems on the provided code!\n./build.sh                                                                         # Build the application\nsrun --exclusive -p ampere -t 00:02:00 -A DIRAC-DT001-GPU nsys profile a.out 32    # Create a profile report of the code\nnsys-ui report1.nsys-rep                                                           # Examine the report in the GUI\nTasks:\n\nFamiliarise yourself with the timeline view.\nUse the CUDA HW track to identify where the GPU is carrying out work.\nUse the CUDA API track check which CUDA functions are being called.\n\nRecord in the shared document the order and time taken of actions on the device.\n\n\n\n\n\n\nExercise repo\n\nhttps://github.com/DiRAC-Training/GPPT-WS01/tree/main/single_gpu_exercises"
+    "text": "Practical time! (10 minutes)\n\n\nRun Nsight Systems on the provided code!\n./build.sh                                                                         # Build the application\nnsys profile a.out 32    # Create a profile report of the code\nnsys-ui report1.nsys-rep                                                           # Examine the report in the GUI\nTasks:\n\nFamiliarise yourself with the timeline view.\nUse the CUDA HW track to identify where the GPU is carrying out work.\nUse the CUDA API track check which CUDA functions are being called.\n\nRecord in the shared document the order and time taken of actions on the device.\n\n\n\n\n\n\nExercise repo\n\nhttps://github.com/DiRAC-Training/GPPT-WS01/tree/main/single_gpu_exercises"
   },
   {
     "objectID": "presentation_v0.html#using-nsight-systems",
@@ -67,7 +67,7 @@
     "href": "presentation_v0.html#exercise-run-nsight-compute-through-cli-5-mins",
     "title": "Introducing GPU Profilers",
     "section": "Exercise: Run Nsight Compute through CLI (5 mins)",
-    "text": "Exercise: Run Nsight Compute through CLI (5 mins)\nUse Nsight Compute on the same code.\nsrun --exclusive -p ampere -t 00:02:00 -A DIRAC-DT001-GPU ncu -k axpy_kernel a.out 32\n-k here tells the profiler to run only on the desired kernels.\nMake sure the command runs, and take a look at the output. Write down the kernel’s execution time in the shared document."
+    "text": "Exercise: Run Nsight Compute through CLI (5 mins)\nUse Nsight Compute on the same code.\nncu -k axpy_kernel a.out 32\n-k here tells the profiler to run only on the desired kernels.\nMake sure the command runs, and take a look at the output. Write down the kernel’s execution time in the shared document."
   },
   {
     "objectID": "presentation_v0.html#using-nsight-compute-1",
@@ -242,7 +242,7 @@
     "href": "presentation_v0.html#branching-in-kernels-15-minutes",
     "title": "Introducing GPU Profilers",
     "section": "Branching in kernels (15 minutes)",
-    "text": "Branching in kernels (15 minutes)\n\nWhen threads in a warp take different branches in a kernel, the GPU runs both branches on every thread. A lot of branching in kernels can therefore hurt our performance.\n\n\nLet’s look at a practical example, in the branching directory, which demonstrates this impact of branching on kernel run-time.\n\n\nEach thread in the branching_kernel choses a branch based on its ID and an input parameter\nChanging the input parameter changes how coherent the warps are in branch selection.\n\n1 = Divergent warps\n32 = Coherent warps"
+    "text": "Branching in kernels (15 minutes)\n\nWhen threads in a warp take different branches in a kernel, the GPU runs both branches on every thread. A lot of branching in kernels can therefore hurt our performance.\n\n\nLet’s look at a practical example, in the branching directory, which demonstrates this impact of branching on kernel run-time.\n\n\nEach thread in the branching_kernel choses a branch based on its ID and an input parameter\nChanging the input parameter changes how coherent the warps are in branch selection.\n\n1-31 = Divergent warps\n32 = Coherent warps"
   },
   {
     "objectID": "presentation_v0.html#branching-exercise-discussion",

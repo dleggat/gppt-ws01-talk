@@ -276,7 +276,7 @@ Run Nsight Systems on the provided code!
 
 ```sh
 ./build.sh                                                                         # Build the application
-srun --exclusive -p ampere -t 00:02:00 -A DIRAC-DT001-GPU nsys profile a.out 32    # Create a profile report of the code
+nsys profile a.out 32    # Create a profile report of the code
 nsys-ui report1.nsys-rep                                                           # Examine the report in the GUI
 ```
 
@@ -371,7 +371,7 @@ Provides detailed metrics simply.
 Use Nsight Compute on the same code.
 
 ```sh
-srun --exclusive -p ampere -t 00:02:00 -A DIRAC-DT001-GPU ncu -k axpy_kernel a.out 32
+ncu -k axpy_kernel a.out 32
 ```
 
 *`-k` here tells the profiler to run only on the desired kernels.*
@@ -880,7 +880,7 @@ Let's look at a practical example, in the `branching` directory, which demonstra
 
 - Each thread in the `branching_kernel` choses a branch based on its ID and an input parameter
 - Changing the input parameter changes how coherent the warps are in branch selection.
-  - 1 = Divergent warps
+  - 1-31 = Divergent warps
   - 32 = Coherent warps
 
 ## Branching exercise discussion
