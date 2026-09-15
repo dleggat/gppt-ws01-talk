@@ -275,9 +275,9 @@ To open an existing report directly in the GUI.
 Run Nsight Systems on the provided code!
 
 ```sh
-./build.sh               # Build the application
-nsys profile a.out 32    # Create a profile report of the code
-nsys-ui report1.nsys-rep # Examine the report in the GUI
+./build.sh                                                                         # Build the application
+srun --exclusive -p ampere -t 00:02:00 -A DIRAC-DT001-GPU nsys profile a.out 32    # Create a profile report of the code
+nsys-ui report1.nsys-rep                                                           # Examine the report in the GUI
 ```
 
 Tasks:
@@ -371,7 +371,7 @@ Provides detailed metrics simply.
 Use Nsight Compute on the same code.
 
 ```sh
-ncu -k axpy_kernel a.out 32
+srun --exclusive -p ampere -t 00:02:00 -A DIRAC-DT001-GPU ncu -k axpy_kernel a.out 32
 ```
 
 *`-k` here tells the profiler to run only on the desired kernels.*
